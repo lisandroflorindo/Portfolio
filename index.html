@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title></title>
+    <link rel="icon" type="image/png" href="images/logo_navbar.png">
+</head>
+
+<body>
+    <body>
+        <div class="navbar">
+            <ul class="nav-links">
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="hire-btn">Contrátame!</button>
+
+            <!-- Botón menú hamburguesa (para móviles) -->
+            <div class="menu-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+
+        <!-- Slide-bar para móviles -->
+        <div class="slidebar">
+            <div class="slidebar-header">
+                <i class='bx bx-x close-btn'></i>
+            </div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="hire-btn-mobile">Contrátame!</button>
+        </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Presentacion -->
+    <section id="inicio">
+        <main class="hero">
+            <div class="hero-content">
+                <h1>Hola, soy <span>Lisandro Florindo</span></h1>
+                <p>Desarrollador web enfocado en crear experiencias digitales funcionales y modernas.</p>
+
+                 <!-- Nueva imagen personal o logo -->
+                <div class="hero-image">
+                <img src="images/logo_navbar.png" alt="Lisandro Florindo">
+                </div>
+            </div>
+        </main>
+    </section>
+    
+    <section id="sobre-mi" class="about">
+        <div class="about-content">
+            <h2>Sobre mí</h2>
+             <p class="about-content">
+                Soy <strong>Lisandro Florindo</strong>, un apasionado del desarrollo web y la tecnología. Desde que comencé mi
+                camino en la programación, he encontrado en cada proyecto una oportunidad para combinar creatividad,
+                precisión técnica y propósito. Mi objetivo es crear soluciones digitales que no solo funcionen bien,
+                sino que también transmitan identidad y valor.
+                </p>
+
+                <p class="about-content">
+                Me dedico al <strong>diseño y desarrollo de sitios web, aplicaciones y sistemas personalizados</strong>. 
+                A través de herramientas modernas y metodologías ágiles, transformo ideas en productos funcionales 
+                que ayudan a empresas y profesionales a mejorar su presencia digital y optimizar sus procesos.
+                </p>
+
+                <p class="about-content">
+                Mi forma de trabajar se basa en la comunicación constante con el cliente, la atención al detalle y 
+                la entrega de resultados medibles. Cada proyecto se aborda con planificación, responsabilidad y un 
+                fuerte compromiso con la calidad.
+                </p>
+
+                <p class="about-content">
+                Mi objetivo es acompañarte desde la idea inicial hasta el lanzamiento, asegurando que tu proyecto no solo funcione, sino que transmita valor y genere impacto real.
+                </p>
+
+                <p class="highlight">
+                Servicios que ofrezco:
+                </p>
+
+            <div id="servicios" class="services-grid">
+                <div class="service-card">
+                    <img src="images/desarrollo_web.png" alt="Diseño Web">
+                    <h3>Diseño y Desarrollo Web</h3>
+                    <p>Diseño sitios web atractivos, funcionales y adaptables, con foco en la experiencia del usuario.</p>
+                </div>
+
+                <div class="service-card">
+                    <img src="images/apps_moviles.png" alt="Aplicaciones Web">
+                    <h3>Aplicaciones Web</h3>
+                    <p>Desarrollo aplicaciones web dinámicas, seguras y escalables adaptadas a tus necesidades.</p>
+                </div>
+
+                <div class="service-card">
+                    <img src="images/sistemas.png" alt="Sistemas a Medida">
+                    <h3>Sistemas a Medida</h3>
+                    <p>Construyo sistemas personalizados que optimizan tus procesos y mejoran la productividad.</p>
+                </div>
+
+                <div class="service-card">
+                    <img src="images/mantenimiento.png" alt="Mantenimiento Web">
+                    <h3>Mantenimiento y Optimización</h3>
+                    <p>Mantengo y mejoro proyectos existentes para garantizar su rendimiento y seguridad.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- footer, contacto y otros -->
+    <section id="contacto">
+        <footer>
+            <div class="cols">
+                <div class="about-col">
+                    <h3>Contacto</h3>
+                    <p>lisandromauricio33@gmail.com</p>
+                    <p>+54-3764564963</p>
+                    <p>Posadas, Misiones - Argentina</p>
+                </div>
+
+                <div class="links-col">
+                    <h4>Atajos</h4>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#sobre mi">Sobre Mi</a>
+                    <a href="#servicios">Servicios</a>
+                </div>
+
+                <div class="links-col">
+                    <h4>Redes Sociales</h4>
+                    <a href="https://www.instagram.com/lisandro.florindo/">Instagram</a>
+                </div>
+
+                <div class="news-col">
+                    <h4>Noticias</h4>
+                    <p>Ingresa tu correo electrónico y recibe notificaciones sobre actualizaciones y novedades</p>
+
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button><i class='bx bxl-telegram'></i></button>
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+            <p>© 2025 Lisandro Florindo</p>
+            <p>Tec. Superior en Programación e Innovación Tecnológica</p>
+            </div>
+
+        </footer>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
