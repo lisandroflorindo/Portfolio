@@ -1,48 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ==== MENU MÓVIL (slidebar) ====
-    const menuToggle = document.querySelector('.menu-toggle');
-    const slidebar = document.querySelector('.slidebar');
-    const closeBtn = document.querySelector('.close-btn');
+    // Selecciones principales
+    const slidebar = document.querySelector(".slidebar");
+    const menuIcon = document.querySelector(".menu-icon i");
+    const closeIcon = document.querySelector(".close-icon i");
+    const overlay = document.querySelector(".overlay");
+    const navLinks = document.querySelectorAll(".slidebar a"); // Links dentro del slide-bar
+    const hireButton = document.querySelector(".hire-btn"); // Botón "Contrátame" del navbar
 
-    menuToggle.addEventListener('click', () => {
-    slidebar.classList.add('active');
+    // === ABRIR SLIDE-BAR ===
+    menuIcon.addEventListener("click", () => {
+        slidebar.classList.add("active");
+        overlay.classList.add("active");
     });
 
-    closeBtn.addEventListener('click', () => {
-    slidebar.classList.remove('active');
+    // === CERRAR SLIDE-BAR ===
+    closeIcon.addEventListener("click", () => {
+        slidebar.classList.remove("active");
+        overlay.classList.remove("active");
     });
 
-    // ==== BOTONES "CONTRÁTAME" (desktop + móvil) ====
-    const hireBtn = document.querySelector('.hire-btn');
-    const hireBtnMobile = document.querySelector('.hire-btn-mobile');
-
-    // URL de WhatsApp con tu número y mensaje
-    const whatsappURL = 'https://wa.me/5493764564963?text=¡Hola!%20Estoy%20interesado%20en%20tus%20servicios.';
-
-    function openWhatsApp() {
-    slidebar.classList.remove('active'); // cierra el menú si está abierto
-    window.open(whatsappURL, '_blank');
-    }
-
-    // Asignar la función a ambos botones
-    if (hireBtn) hireBtn.addEventListener('click', openWhatsApp);
-    if (hireBtnMobile) hireBtnMobile.addEventListener('click', openWhatsApp);
-
-    // Abrir slidebar
-    menuToggle.addEventListener('click', () => {
-    slidebar.classList.add('active');
+    // === FUNCIONALIDAD DE LOS LINKS DEL SLIDE-BAR ===
+    navLinks.forEach(link => {
+        link.addEventListener("click", e => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href");
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            // Scroll suave
+            window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: "smooth"
+            });
+        }
+        // Cierra el slide-bar después de hacer click
+        slidebar.classList.remove("active");
+        });
     });
 
-    // Cerrar slidebar al presionar el ícono de cierre
-    closeBtn.addEventListener('click', () => {
-    slidebar.classList.remove('active');
-    });
-
-    // Cerrar slidebar al hacer clic en un enlace
-    document.querySelectorAll('.slidebar a').forEach(link => {
-    link.addEventListener('click', () => {
-        slidebar.classList.remove('active');
-    });
+    // === FUNCIÓN DEL BOTÓN "CONTRÁTAME" ===
+    hireButton.addEventListener("click", () => {
+        const numero = "5493764564963";
+        const mensaje = "¡Hola Lisandro! Me gustaría contratarte para un proyecto web.";
+        const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+        window.open(url, "_blank");
     });
 
     // ==== Scroll suave al hacer clic en los enlaces del navbar ====
@@ -58,4 +58,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     });
+
+    // Scroll suave para los enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+        e.preventDefault();
+        window.scrollTo({
+            top: target.offsetTop,
+            behavior: 'smooth'
+        });
+        }
+    });
+    });
+
 });
