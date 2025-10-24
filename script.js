@@ -3,20 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const slidebar = document.querySelector(".slidebar");
     const menuIcon = document.querySelector(".menu-icon i");
     const closeIcon = document.querySelector(".close-icon i");
-    const overlay = document.querySelector(".overlay");
     const navLinks = document.querySelectorAll(".slidebar a"); // Links dentro del slide-bar
     const hireButton = document.querySelector(".hire-btn"); // Botón "Contrátame" del navbar
 
     // === ABRIR SLIDE-BAR ===
     menuIcon.addEventListener("click", () => {
         slidebar.classList.add("active");
-        overlay.classList.add("active");
     });
 
     // === CERRAR SLIDE-BAR ===
     closeIcon.addEventListener("click", () => {
         slidebar.classList.remove("active");
-        overlay.classList.remove("active");
     });
 
     // === FUNCIONALIDAD DE LOS LINKS DEL SLIDE-BAR ===
@@ -74,3 +71,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
