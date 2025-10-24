@@ -12,35 +12,38 @@
 
 <body>
     <body>
+        <!-- NAVBAR -->
         <div class="navbar">
             <ul class="nav-links">
                 <li><a href="#sobre-mi">Sobre mí</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
-            <button class="hire-btn">Contrátame!</button>
 
-            <!-- Botón menú hamburguesa (para móviles) -->
-            <div class="menu-toggle">
+            <button class="hire-btn">¡Contrátame!</button>
+
+            <!-- Botón de menú móvil -->
+            <div class="menu-icon">
                 <i class='bx bx-menu'></i>
             </div>
-        </div>
-
-        <!-- Slide-bar para móviles -->
-        <div class="slidebar">
-            <div class="slidebar-header">
-                <i class='bx bx-x close-btn'></i>
             </div>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-            <button class="hire-btn-mobile">Contrátame!</button>
-        </div>
 
-    <div class="overlay" id="overlay"></div>
+            <div class="overlay" id="overlay"></div>
+
+            <!-- SLIDEBAR -->
+            <div class="slidebar">
+                <div class="close-icon">
+                    <i class='bx bx-x'></i>
+                </div>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+        </div>
 
     <!-- Presentacion -->
     <section id="inicio">
@@ -68,7 +71,7 @@
                 </p>
 
                 <p class="about-content">
-                Me dedico al <strong>diseño y desarrollo de sitios web, aplicaciones y sistemas personalizados</strong>. 
+                Me dedico al diseño y desarrollo de sitios web, aplicaciones y sistemas personalizados. 
                 A través de herramientas modernas y metodologías ágiles, transformo ideas en productos funcionales 
                 que ayudan a empresas y profesionales a mejorar su presencia digital y optimizar sus procesos.
                 </p>
@@ -119,46 +122,44 @@
 
     <!-- footer, contacto y otros -->
     <section id="contacto">
-        <footer>
-            <div class="cols">
-                <div class="about-col">
+        <footer class="footer">
+            <div class="footer-container">
+
+                <!-- Columna 1: Contactos -->
+                <div class="footer-column">
                     <h3>Contacto</h3>
-                    <p>lisandromauricio33@gmail.com</p>
-                    <p>+54-3764564963</p>
-                    <p>Posadas, Misiones - Argentina</p>
+                    <p><i class='bx bx-envelope'></i> lisandromauricio33@gmail.com</p>
+                    <p><i class='bx bx-phone'></i> +54 376 4564963</p>
+                    <p><i class='bx bx-map'></i> Posadas, Misiones - Argentina</p>
                 </div>
 
-                <div class="links-col">
-                    <h4>Atajos</h4>
-                    <a href="#inicio">Inicio</a>
-                    <a href="#sobre mi">Sobre Mi</a>
-                    <a href="#servicios">Servicios</a>
+                <!-- Columna 2: Atajos -->
+                <div class="footer-column">
+                    <h3>Atajos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre-mi">Sobre mí</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                    </ul>
                 </div>
 
-                <div class="links-col">
-                    <h4>Redes Sociales</h4>
-                    <a href="https://www.instagram.com/lisandro.florindo/">Instagram</a>
-                </div>
-
-                <div class="news-col">
-                    <h4>Noticias</h4>
-                    <p>Ingresa tu correo electrónico y recibe notificaciones sobre actualizaciones y novedades</p>
-
-                    <form>
-                        <input type="email" placeholder="Your email address">
-                        <button><i class='bx bxl-telegram'></i></button>
-                    </form>
-
+                <!-- Columna 3: Redes Sociales -->
+                <div class="footer-column">
+                    <h3>Redes Sociales</h3>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/lisandroflorindo1/" target="_blank"><i class='bx bxl-facebook'></i></a>
+                            <a href="https://www.instagram.com/lisandro.florindo/" target="_blank"><i class='bx bxl-instagram'></i></a>
+                            <a href="https://wa.me/5493764564963" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+                        </div>
                 </div>
 
             </div>
 
             <div class="footer-bottom">
-            <p>© 2025 Lisandro Florindo</p>
-            <p>Tec. Superior en Programación e Innovación Tecnológica</p>
+                <p>©2025 Lisandro Florindo | Todos los derechos reservados.</p>
             </div>
-
         </footer>
+
     </section>
 
     <script src="script.js"></script>
