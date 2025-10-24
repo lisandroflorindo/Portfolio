@@ -228,8 +228,8 @@ body{
 }
 
 .hero-image img {
-  width: 220px;
-  height: 220px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border-radius: 50%;
   border: 4px solid #ffb742;
@@ -619,4 +619,5 @@ body{
     }
 
 }
+
 
