@@ -1,4 +1,4 @@
-# 🌐 Portfolio – Lisandro Florindo
+# 🌐 Soluciones Informáticas
 
 Este repositorio contiene mi **portfolio web personal**, donde presento quién soy, qué hago y cómo contactarme como desarrollador web.
 
