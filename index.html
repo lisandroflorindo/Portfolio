@@ -1,144 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
-    <title>Soluciones Informáticas</title>
-    <link rel="shortcut icon" href="images/solucionesinformaticas.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+  <title>Soluciones Informáticas</title>
+  <link rel="shortcut icon" href="images/solucionesinformaticas.png" type="image/x-icon">
 </head>
 
 <body>
-    <body>
-        <!-- NAVBAR -->
-        <div class="navbar">
-            <ul class="nav-links">
-                <li><a href="#sobre-mi">Nosotros</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <ul class="nav-links">
+      <li><a href="#inicio">Home</a></li>
+      <li><a href="#sobre-mi">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
 
-            <button class="hire-btn">¡Contrátame!</button>
+    <div class="nav-cta">
+      <button class="hire-btn">
+        <i class='bx bxl-whatsapp'></i> ¡Quiero mi página!
+      </button>
 
-            <!-- Botón de menú móvil -->
-            <div class="menu-icon">
-                <i class='bx bx-menu'></i>
-            </div>
-            </div>
+      <!-- Logo solo para mobile -->
+      <a class="nav-logo" href="#inicio" aria-label="Ir al inicio">
+        <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas">
+      </a>
+    </div>
 
-            <div class="overlay" id="overlay"></div>
+    <!-- Botón de menú móvil -->
+    <div class="menu-icon">
+      <i class='bx bx-menu'></i>
+    </div>
+  </div>
 
-            <!-- SLIDEBAR -->
-            <div class="slidebar">
-                <div class="close-icon">
-                    <i class='bx bx-x'></i>
-                </div>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#sobre-mi">Nosotros</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
+  <!-- Overlay (para cerrar el slidebar) -->
+  <div class="page-overlay" id="overlay"></div>
 
+  <!-- SLIDEBAR -->
+  <div class="slidebar">
+    <div class="close-icon">
+      <i class='bx bx-x'></i>
+    </div>
+
+    <!-- ✅ Logo arriba -->
+    <a class="slidebar-logo" href="#inicio" aria-label="Ir al inicio">
+      <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas">
+    </a>
+
+    <ul>
+      <li><a href="#inicio">Home</a></li>
+      <li><a href="#sobre-mi">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <!-- ✅ Botón más arriba (no pegado al fondo) -->
+    <button class="hire-btn hire-btn-sidebar">
+      <i class='bx bxl-whatsapp'></i> Quiero mi página
+    </button>
+  </div>
+
+  <!-- Presentacion -->
+  <section id="inicio">
+    <main class="hero">
+      <div class="hero-inner">
+        <div class="hero-left reveal">
+          <h1 class="hero-title">Desarrollo de Páginas y Aplicaciones Web</h1>
+
+          <p class="hero-subtitle">
+            Nos adaptamos a las necesidades de tu negocio.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn-primary hire-btn hero-cta">
+              <i class='bx bxl-whatsapp'></i> Quiero mi página
+            </button>
+            <a class="btn-secondary" href="#servicios">Ver servicios</a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric"><p class="metric-number">Desarrollo</p></div>
+            <div class="metric"><p class="metric-number">Mantenimiento</p></div>
+            <div class="metric"><p class="metric-number">Optimización</p></div>
+          </div>
         </div>
 
-    <!-- Presentacion -->
-    <section id="inicio">
-        <main class="hero">
-            <div class="hero-content">
-                <div class="hero-image">
-                <img src="images/solucionesinformaticas.png" alt="Lisandro Florindo">
-                </div>
-                <p>Desarrollo de <span>Páginas y Aplicaciones Web</span> modernas.</p>
-            </div>
-        </main>
-    </section>
-    
-    <section id="sobre-mi" class="about">
-        <div class="about-content">
-            <h2>Sobre Nosotros</h2>
-             <p class="about-content">
-                En Soluciones Informáticas ayudamos a empresas, negocios o emprendedores a mejorar su presencia digital con una web moderna y optimizada para garantizar velocidad, estabilidad y seguridad.
-                </p>
-
-                <p class="about-content">
-                Nuestro objetivo es acompañarte desde la idea inicial hasta el lanzamiento, asegurando que tu proyecto no solo funcione, sino que transmita valor y genere un impacto real.
-                </p>
-
-                <p class="highlight">
-                Nuestros Servicios:
-                </p>
-
-            <div id="servicios" class="services-grid">
-                <div class="service-card">
-                    <img src="images/desarrollo_web.png" alt="Diseño Web">
-                    <h3>Páginas Web</h3>
-                    <p>Desarrollo de sitios web atractivos, funcionales y adaptables, con foco en la experiencia del usuario.</p>
-                </div>
-
-                <div class="service-card">
-                    <img src="images/apps_moviles.png" alt="Aplicaciones Web">
-                    <h3>Aplicaciones Web</h3>
-                    <p>Desarrollo de aplicaciones web dinámicas, seguras y escalables adaptadas a tus necesidades.</p>
-                </div>
-
-                <div class="service-card">
-                    <img src="images/mantenimiento.png" alt="Mantenimiento Web">
-                    <h3>Mantenimiento y Optimización</h3>
-                    <p>Mantenemos y mejoramos proyectos existentes para garantizar su rendimiento y seguridad.</p>
-                </div>
-
-            </div>
+        <div class="hero-right reveal">
+          <div class="hero-image-wrap">
+            <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas">
+          </div>
         </div>
-    </section>
+      </div>
+    </main>
+  </section>
 
+  <section id="sobre-mi" class="about">
+    <div class="about-content">
+      <h2 class="reveal">Sobre Nosotros</h2>
 
-    <!-- footer, contacto y otros -->
-    <section id="contacto">
-        <footer class="footer">
-            <div class="footer-container">
+      <p class="about-content reveal">
+        En Soluciones Informáticas ayudamos a empresas, negocios o emprendedores a mejorar su presencia digital con una web moderna y optimizada para garantizar velocidad, estabilidad y seguridad.
+      </p>
 
-                <!-- Columna 1: Contactos -->
-                <div class="footer-column">
-                    <h3>Contacto</h3>
-                    <p><i class='bx bx-envelope'></i> lisandromauricio33@gmail.com</p>
-                    <p><i class='bx bx-phone'></i> +54 376 4564963</p>
-                    <p><i class='bx bx-map'></i> Posadas, Misiones - Argentina</p>
-                </div>
+      <p class="about-content reveal">
+        Nuestro objetivo es acompañarte desde la idea inicial hasta el lanzamiento, asegurando que tu proyecto no solo funcione, sino que transmita valor y genere un impacto real.
+      </p>
 
-                <!-- Columna 2: Atajos -->
-                <div class="footer-column">
-                    <h3>Atajos</h3>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#sobre-mi">Nosotros</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                    </ul>
-                </div>
+      <p class="highlight reveal">Nuestros Servicios:</p>
 
-                <!-- Columna 3: Redes Sociales -->
-                <div class="footer-column">
-                    <h3>Redes Sociales</h3>
-                        <div class="social-links">
-                            <a href="https://www.facebook.com/lisandroflorindo1/" target="_blank"><i class='bx bxl-facebook'></i></a>
-                            <a href="https://www.instagram.com/solutions.lf/" target="_blank"><i class='bx bxl-instagram'></i></a>
-                            <a href="https://wa.me/5493764564963" target="_blank"><i class='bx bxl-whatsapp'></i></a>
-                        </div>
-                </div>
+      <div id="servicios" class="services-grid">
+        <div class="service-card reveal">
+          <div class="image-wrapper">
+            <img src="images/desarrollo_web.png" alt="Diseño Web">
+            <span class="img-overlay"></span>
+          </div>
+          <h3>Páginas Web</h3>
+          <p>Sitios modernos, responsive y orientados a tu marca.</p>
+        </div>
 
-            </div>
+        <div class="service-card reveal">
+          <div class="image-wrapper">
+            <img src="images/apps_moviles.png" alt="Aplicaciones Web">
+            <span class="img-overlay"></span>
+          </div>
+          <h3>Aplicaciones Web</h3>
+          <p>Funciones a medida para tu negocio adaptadas a tus necesidades.</p>
+        </div>
 
-            <div class="footer-bottom">
-                <p>©2025 Soluciones Informáticas | Todos los derechos reservados.</p>
-            </div>
-        </footer>
+        <div class="service-card reveal">
+          <div class="image-wrapper">
+            <img src="images/mantenimiento.png" alt="Mantenimiento Web">
+            <span class="img-overlay"></span>
+          </div>
+          <h3>Mantenimiento y Optimización</h3>
+          <p>Actualizaciones, mejoras de rendimiento y seguridad para una mejor experiencia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    </section>
+  <section id="contacto">
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Contacto</h3>
+          <p><i class='bx bx-envelope'></i> lisandromauricio33@gmail.com</p>
+          <p><i class='bx bx-phone'></i> +54 376 4564963</p>
+          <p><i class='bx bx-map'></i> Posadas, Misiones - Argentina</p>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="footer-column">
+          <h3>Atajos</h3>
+          <ul>
+            <li><a href="#inicio">Home</a></li>
+            <li><a href="#sobre-mi">Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+          </ul>
+        </div>
 
+        <div class="footer-column">
+          <h3>Redes Sociales</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/lisandroflorindo1/" target="_blank"><i class='bx bxl-facebook'></i></a>
+            <a href="https://www.instagram.com/solutions.lf/" target="_blank"><i class='bx bxl-instagram'></i></a>
+            <a href="https://wa.me/5493764564963" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>©2025 Soluciones Informáticas</p>
+      </div>
+    </footer>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
