@@ -582,7 +582,7 @@ body{
 
   .hero-right{ display: none; }
   .hero{ padding: 22px 20px 10px; }
-  .hero-title{ font-size: 32px; }
+  .hero-title{ font-size: 50px; }
 
   .hero-metrics{
     grid-template-columns: repeat(3, 1fr);
@@ -616,8 +616,8 @@ body{
   }
 
   .hero-title{
-    font-size: 30px;
-    line-height: 1.12;
+    font-size: 50px;
+    line-height: 1.20;
     margin-top: 10px;
   }
 
@@ -670,7 +670,7 @@ body{
   }
 
   .hero-tittle{
-    font-size: 28px;
+    font-size: 50px;
   }
 
   .btn-primary, .btn-secondary{
