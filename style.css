@@ -595,3 +595,90 @@ body{
   }
   .footer-column{ width: 100%; }
 }
+
+/* =========================
+  adaptacion a pantallas chicas
+========================= */
+@media screen and (max-width: 420px){
+
+  /* ganamos espacio vertical real (tu navbar mide ~120px) */
+  body{
+    padding-top: 120px;
+  }
+
+  .hero{
+    padding: 22px 16px 10px;
+  }
+
+  .hero-inner{
+    padding-top: 14px;
+    gap: 18px;
+  }
+
+  .hero-title{
+    font-size: 30px;
+    line-height: 1.12;
+    margin-top: 10px;
+  }
+
+  .hero-subtitle{
+    font-size: 15px;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  .hero-actions{
+    margin-top: 14px;
+    gap: 10px;
+  }
+
+  /* botones más compactos y que no rompan el layout */
+  .btn-primary,
+  .btn-secondary{
+    padding: 12px 14px;
+    font-size: 14px;
+    min-width: 0;
+  }
+
+  /* si querés que entren perfectos en una fila */
+  .btn-primary,
+  .btn-secondary{
+    flex: 1;
+  }
+
+  /* métricas tipo “palabras clave” SIN cortes */
+  .hero-metrics{
+    margin-top: 14px;
+    gap: 8px;
+  }
+
+  .metric{
+    padding: 10px 10px;
+    border-radius: 12px;
+  }
+
+  .metric-number{
+    font-size: 12px;
+    white-space: nowrap; /* evita que “Optimización” se parta */
+  }
+}
+
+/* extra para pantallas muy chicas */
+@media screen and (max-width: 360px){
+  body{
+    padding-top: 112px;
+  }
+
+  .hero-tittle{
+    font-size: 28px;
+  }
+
+  .btn-primary, .btn-secondary{
+    font-size: 13px;
+    padding: 11px 12px;
+  }
+
+  .metric-number{
+    font-size: 11.5px;
+  }
+}
