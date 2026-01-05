@@ -1,49 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+
   const slidebar = document.querySelector(".slidebar");
   const menuBtn = document.querySelector(".menu-icon");
   const closeBtn = document.querySelector(".close-icon");
   const overlay = document.getElementById("overlay");
   const navbar = document.querySelector(".navbar");
-
-  const navLinksSlidebar = document.querySelectorAll(".slidebar a[href^='#']");
-  const navLinksNavbar = document.querySelectorAll(".navbar a[href^='#']");
-  const allNavLinks = [...navLinksNavbar, ...navLinksSlidebar];
-
-  const hireButtons = document.querySelectorAll(".hire-btn");
-  const revealEls = document.querySelectorAll(".reveal");
+  const hero = document.querySelector("#inicio .hero");
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // ===== Load animations trigger
+  requestAnimationFrame(() => body.classList.add("is-loaded"));
+
+  // ===== Helpers
   const getNavbarOffset = () => {
     if (!navbar) return 70;
     const h = navbar.getBoundingClientRect().height || 70;
     return Math.max(60, Math.floor(h));
   };
 
-  const smoothScrollTo = (targetEl) => {
-    if (!targetEl) return;
-    const offset = getNavbarOffset() + 10;
-    const top = targetEl.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: "smooth" });
-  };
-
   const openMenu = () => {
-    if (!slidebar) return;
-    slidebar.classList.add("active");
+    slidebar?.classList.add("active");
     overlay?.classList.add("active");
-    document.body.style.overflow = "hidden";
+    overlay?.setAttribute("aria-hidden", "false");
+    body.classList.add("no-scroll");
     menuBtn?.setAttribute("aria-expanded", "true");
   };
 
   const closeMenu = () => {
-    if (!slidebar) return;
-    slidebar.classList.remove("active");
+    slidebar?.classList.remove("active");
     overlay?.classList.remove("active");
-    document.body.style.overflow = "";
+    overlay?.setAttribute("aria-hidden", "true");
+    body.classList.remove("no-scroll");
     menuBtn?.setAttribute("aria-expanded", "false");
   };
 
-  // ✅ Click en el botón completo (no solo el <i>)
   menuBtn?.addEventListener("click", openMenu);
   closeBtn?.addEventListener("click", closeMenu);
   overlay?.addEventListener("click", closeMenu);
@@ -52,140 +44,91 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeMenu();
   });
 
-  // Navegación sidebar (con scroll suave + cierra menú)
-  navLinksSlidebar.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const targetId = link.getAttribute("href");
-      if (!targetId || !targetId.startsWith("#")) return;
-
-      const targetEl = document.querySelector(targetId);
-      if (!targetEl) return;
-
-      e.preventDefault();
-      smoothScrollTo(targetEl);
-      closeMenu();
-    });
-  });
-
-  // Navegación navbar (con scroll suave)
-  navLinksNavbar.forEach((a) => {
+  // ===== Smooth scroll (con offset por navbar)
+  const anchorLinks = document.querySelectorAll("a[href^='#']");
+  anchorLinks.forEach((a) => {
     a.addEventListener("click", (e) => {
       const href = a.getAttribute("href");
-      if (!href || !href.startsWith("#")) return;
+      if (!href || href === "#") return;
 
-      const targetEl = document.querySelector(href);
-      if (!targetEl) return;
+      const target = document.querySelector(href);
+      if (!target) return;
 
       e.preventDefault();
-      smoothScrollTo(targetEl);
-    });
-  });
-
-  // WhatsApp: aplica a todos los .hire-btn (previene doble navegación)
-  hireButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      // Si es <a>, evitamos que navegue por href además del window.open
-      e.preventDefault();
-
-      const numero = "5493764564963";
-      const mensaje = "¡Hola! Me gustaría contratarte para un proyecto web.";
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-
-      window.open(url, "_blank", "noopener");
       closeMenu();
+
+      const top = target.getBoundingClientRect().top + window.pageYOffset - getNavbarOffset() + 2;
+      window.scrollTo({ top, behavior: prefersReduced ? "auto" : "smooth" });
     });
   });
 
-  // Reveal
-  if (revealEls.length && !prefersReduced) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            io.unobserve(entry.target);
-          }
-        });
+  // ===== Navbar solid on scroll
+  const onScrollNavbar = () => {
+    if (!navbar) return;
+    const solid = window.scrollY > 20;
+    navbar.classList.toggle("navbar--solid", solid);
+  };
+  onScrollNavbar();
+  window.addEventListener("scroll", onScrollNavbar, { passive: true });
+
+  // ===== Hero parallax variable
+  if (hero && !prefersReduced) {
+    let raf = 0;
+    const updateHeroParallax = () => {
+      const y = window.scrollY || 0;
+      const par = Math.max(-30, Math.min(30, y * 0.08)); // clamp
+      hero.style.setProperty("--hero-par", `${par}px`);
+      raf = 0;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (raf) return;
+        raf = requestAnimationFrame(updateHeroParallax);
       },
-      { threshold: 0.18 }
+      { passive: true }
     );
-    revealEls.forEach((el) => io.observe(el));
-  } else {
-    revealEls.forEach((el) => el.classList.add("in-view"));
+
+    updateHeroParallax();
   }
 
-  // Stagger: Servicios
-  const serviceCards = document.querySelectorAll(".services-grid .service-card.reveal");
-  serviceCards.forEach((card, idx) => {
-    card.style.transitionDelay = `${idx * 180}ms`;
+  // ===== Reveal + stagger
+  // Aseguramos que ciertos elementos también tengan reveal aunque te olvides en HTML
+  const ensureReveal = (selector) => {
+    document.querySelectorAll(selector).forEach((el) => el.classList.add("reveal"));
+  };
+
+  ensureReveal(".service-card");
+  ensureReveal(".footer-column");
+  ensureReveal(".about-media");
+  ensureReveal(".about-media-mobile");
+
+  // marcamos reveal-img automáticamente en contenedores de imágenes
+  document.querySelectorAll(".about-media.reveal, .about-media-mobile.reveal, .image-wrapper").forEach((el) => {
+    el.classList.add("reveal-img");
+    el.classList.add("reveal");
   });
 
-  // ✅ Activa links según scroll (navbar + sidebar)
-  const sectionIds = [...new Set(
-    allNavLinks
-      .map((a) => a.getAttribute("href"))
-      .filter((h) => h && h.startsWith("#") && h.length > 1)
-  )];
+  const revealEls = Array.from(document.querySelectorAll(".reveal"));
 
-  const targets = sectionIds
-    .map((id) => ({ id, el: document.querySelector(id) }))
-    .filter((x) => x.el);
+  // stagger: cada elemento recibe un delay variable en ms
+  revealEls.forEach((el, i) => {
+    const delay = Math.min(i * 80, 520); // tope para que no se vaya al infinito
+    el.style.setProperty("--d", `${delay}ms`);
+  });
 
-  const setActiveLink = (id) => {
-    allNavLinks.forEach((a) => {
-      a.classList.toggle("active", a.getAttribute("href") === id);
-    });
-  };
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
 
-  const updateActiveOnScroll = () => {
-    if (!targets.length) return;
-
-    const offset = getNavbarOffset() + 12;
-    const y = window.scrollY + offset;
-
-    const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-    if (bottom) {
-      setActiveLink(targets[targets.length - 1].id);
-      return;
-    }
-
-    let current = targets[0].id;
-
-    for (const t of targets) {
-      const topAbs = t.el.getBoundingClientRect().top + window.scrollY;
-      if (topAbs <= y) current = t.id;
-      else break;
-    }
-
-    setActiveLink(current);
-  };
-
-  window.addEventListener("scroll", updateActiveOnScroll, { passive: true });
-  window.addEventListener("resize", updateActiveOnScroll);
-  updateActiveOnScroll();
-
-  // ✅ Oculta el botón flotante cuando se ve el footer / contacto
-  const waFloat = document.querySelector(".wa-float");
-  const contactSection = document.querySelector("#contacto");
-  const footerEl = document.querySelector("footer.footer");
-
-  const hideTarget = contactSection || footerEl;
-
-  if (waFloat && hideTarget) {
-    const ioFloat = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // Si el contacto/footer está visible => ocultar botón
-          waFloat.classList.toggle("is-hidden", entry.isIntersecting);
-        });
-      },
-      {
-        // Apenas asome un poco el contacto/footer, lo ocultamos
-        threshold: 0.05,
-      }
-    );
-
-    ioFloat.observe(hideTarget);
-  }
-
+  revealEls.forEach((el) => io.observe(el));
 });
