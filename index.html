@@ -1,120 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
   <title>Soluciones Informáticas</title>
-  <link rel="shortcut icon" href="images/solucionesinformaticas.png" type="image/x-icon">
+  <link rel="shortcut icon" href="images/solucionesinformaticas.png" type="image/x-icon" />
 </head>
 
 <body>
   <!-- NAVBAR -->
-  <div class="navbar">
-    <ul class="nav-links">
-      <li><a href="#inicio">Home</a></li>
-      <li><a href="#sobre-mi">Nosotros</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
+  <header class="navbar" role="banner">
+    <nav aria-label="Navegación principal">
+      <ul class="nav-links">
+        <li><a href="#inicio">Home</a></li>
+        <li><a href="#sobre-mi">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
 
     <div class="nav-cta">
-      <button class="hire-btn">
-        <i class='bx bxl-whatsapp'></i> ¡Quiero mi página!
-      </button>
+      <!-- CTA (desktop) -->
+      <a class="hire-btn" href="https://wa.me/5493764564963" target="_blank" rel="noopener">
+        <i class="bx bxl-whatsapp"></i> ¡Quiero mi página!
+      </a>
 
       <!-- Logo solo para mobile -->
       <a class="nav-logo" href="#inicio" aria-label="Ir al inicio">
-        <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas">
+        <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas" />
       </a>
     </div>
 
     <!-- Botón de menú móvil -->
-    <div class="menu-icon">
-      <i class='bx bx-menu'></i>
-    </div>
-  </div>
+    <button class="menu-icon" type="button" aria-label="Abrir menú">
+      <i class="bx bx-menu" aria-hidden="true"></i>
+    </button>
+  </header>
 
-  <!-- Overlay (para cerrar el slidebar) -->
-  <div class="page-overlay" id="overlay"></div>
+  <!-- Overlay -->
+  <div class="page-overlay" id="overlay" aria-hidden="true"></div>
 
   <!-- SLIDEBAR -->
-  <div class="slidebar">
-    <div class="close-icon">
-      <i class='bx bx-x'></i>
-    </div>
+  <aside class="slidebar" aria-label="Menú móvil">
+    <button class="close-icon" type="button" aria-label="Cerrar menú">
+      <i class="bx bx-x" aria-hidden="true"></i>
+    </button>
 
-    <!-- ✅ Logo arriba -->
     <a class="slidebar-logo" href="#inicio" aria-label="Ir al inicio">
-      <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas">
+      <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas" />
     </a>
 
-    <ul>
-      <li><a href="#inicio">Home</a></li>
-      <li><a href="#sobre-mi">Nosotros</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
+    <nav aria-label="Navegación móvil">
+      <ul>
+        <li><a href="#inicio">Home</a></li>
+        <li><a href="#sobre-mi">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
 
-    <!-- ✅ Botón más arriba (no pegado al fondo) -->
-    <button class="hire-btn hire-btn-sidebar">
-      <i class='bx bxl-whatsapp'></i> Quiero mi página
-    </button>
-  </div>
+    <a class="hire-btn hire-btn-sidebar" href="https://wa.me/5493764564963" target="_blank" rel="noopener">
+      <i class="bx bxl-whatsapp"></i> ¡Quiero mi página!
+    </a>
+  </aside>
 
-  <!-- Presentacion -->
+  <!-- HERO -->
   <section id="inicio">
     <main class="hero">
       <div class="hero-inner">
         <div class="hero-left reveal">
-          <h1 class="hero-title">Desarrollo de Páginas y Aplicaciones Web</h1>
+          <h1 class="hero-title">Soluciones Informáticas</h1>
 
           <p class="hero-subtitle">
             Nos adaptamos a las necesidades de tu negocio.
           </p>
-
-          <div class="hero-actions">
-            <button class="btn-primary hire-btn hero-cta">
-              <i class='bx bxl-whatsapp'></i> Quiero mi página
-            </button>
-            <a class="btn-secondary" href="#servicios">Ver servicios</a>
-          </div>
-
-          <div class="hero-metrics">
-            <div class="metric"><p class="metric-number">Desarrollo</p></div>
-            <div class="metric"><p class="metric-number">Mantenimiento</p></div>
-            <div class="metric"><p class="metric-number">Optimización</p></div>
-          </div>
         </div>
 
         <div class="hero-right reveal">
           <div class="hero-image-wrap">
-            <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas">
+            <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas" />
           </div>
         </div>
       </div>
     </main>
   </section>
 
+  <!-- NOSOTROS -->
   <section id="sobre-mi" class="about">
     <div class="about-content">
-      <h2 class="reveal">Sobre Nosotros</h2>
+      <div class="about-grid">
+        <div class="about-media reveal">
+          <img src="images/solucionesinformaticas.png" alt="Trabajo de desarrollo web" />
+        </div>
 
-      <p class="about-content reveal">
-        En Soluciones Informáticas ayudamos a empresas, negocios o emprendedores a mejorar su presencia digital con una web moderna y optimizada para garantizar velocidad, estabilidad y seguridad.
-      </p>
+        <div class="about-text reveal">
 
-      <p class="about-content reveal">
-        Nuestro objetivo es acompañarte desde la idea inicial hasta el lanzamiento, asegurando que tu proyecto no solo funcione, sino que transmita valor y genere un impacto real.
-      </p>
+          <p>
+            En <strong>Soluciones Informáticas</strong> ayudo a empresas, negocios y emprendedores a mejorar su presencia digital con una web moderna, rápida y preparada para convertir visitas en clientes.
+          </p>
 
-      <p class="highlight reveal">Nuestros Servicios:</p>
+          <div class="about-media-mobile">
+            <img src="images/solucionesinformaticas.png" alt="Trabajo de desarrollo web" />
+          </div>
+
+          <p>
+            Trabajo desde la idea inicial hasta la publicación, cuidando diseño, rendimiento y la experiencia del usuario.
+          </p>
+
+          <p>Lisandro Florindo</p>
+        </div>
+      </div>
+
+      <!-- Proceso -->
+      <section class="process" aria-labelledby="proceso-title">
+        <h2 id="proceso-title" class="section-title reveal">Nuestro proceso</h2>
+
+        <div class="process-grid">
+          <article class="process-card reveal">
+            <h3>Relevamiento</h3>
+            <p>Definimos objetivo, secciones y estilo.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <h3>Diseño</h3>
+            <p>Armamos estructura y look profesional.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <h3>Desarrollo</h3>
+            <p>Implementación responsive y optimizada.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <h3>Entrega y Soporte</h3>
+            <p>Publicación y mantenimiento continuo.</p>
+          </article>
+        </div>
+      </section>
+
+      <p class="highlight reveal">Nuestros Servicios</p>
 
       <div id="servicios" class="services-grid">
         <div class="service-card reveal">
           <div class="image-wrapper">
-            <img src="images/desarrollo_web.png" alt="Diseño Web">
+            <img src="images/desarrollo_web.png" alt="Diseño Web" />
             <span class="img-overlay"></span>
           </div>
           <h3>Páginas Web</h3>
@@ -123,7 +156,7 @@
 
         <div class="service-card reveal">
           <div class="image-wrapper">
-            <img src="images/apps_moviles.png" alt="Aplicaciones Web">
+            <img src="images/apps_moviles.png" alt="Aplicaciones Web" />
             <span class="img-overlay"></span>
           </div>
           <h3>Aplicaciones Web</h3>
@@ -132,7 +165,7 @@
 
         <div class="service-card reveal">
           <div class="image-wrapper">
-            <img src="images/mantenimiento.png" alt="Mantenimiento Web">
+            <img src="images/mantenimiento.png" alt="Mantenimiento Web" />
             <span class="img-overlay"></span>
           </div>
           <h3>Mantenimiento y Optimización</h3>
@@ -142,14 +175,15 @@
     </div>
   </section>
 
+  <!-- CONTACTO / FOOTER -->
   <section id="contacto">
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-column">
           <h3>Contacto</h3>
-          <p><i class='bx bx-envelope'></i> lisandromauricio33@gmail.com</p>
-          <p><i class='bx bx-phone'></i> +54 376 4564963</p>
-          <p><i class='bx bx-map'></i> Posadas, Misiones - Argentina</p>
+          <p><i class="bx bx-envelope"></i> lisandromauricio33@gmail.com</p>
+          <p><i class="bx bx-phone"></i> +54 376 4564963</p>
+          <p><i class="bx bx-map"></i> Posadas, Misiones - Argentina</p>
         </div>
 
         <div class="footer-column">
@@ -164,9 +198,15 @@
         <div class="footer-column">
           <h3>Redes Sociales</h3>
           <div class="social-links">
-            <a href="https://www.facebook.com/lisandroflorindo1/" target="_blank"><i class='bx bxl-facebook'></i></a>
-            <a href="https://www.instagram.com/solutions.lf/" target="_blank"><i class='bx bxl-instagram'></i></a>
-            <a href="https://wa.me/5493764564963" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+            <a href="https://www.facebook.com/lisandroflorindo1/" target="_blank" rel="noopener">
+              <i class="bx bxl-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.instagram.com/solutions.lf/" target="_blank" rel="noopener">
+              <i class="bx bxl-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/5493764564963" target="_blank" rel="noopener">
+              <i class="bx bxl-whatsapp" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>

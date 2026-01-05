@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
-  // ELEMENTOS
-  // =========================
   const slidebar = document.querySelector(".slidebar");
   const menuIcon = document.querySelector(".menu-icon i");
   const closeIcon = document.querySelector(".close-icon i");
@@ -17,9 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // =========================
-  // HELPERS
-  // =========================
   const getNavbarOffset = () => {
     if (!navbar) return 70;
     const h = navbar.getBoundingClientRect().height || 70;
@@ -33,9 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top, behavior: "smooth" });
   };
 
-  // =========================
-  // SLIDEBAR (OPEN/CLOSE)
-  // =========================
   const openMenu = () => {
     if (!slidebar) return;
     slidebar.classList.add("active");
@@ -58,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeMenu();
   });
 
-  // Slidebar links: scroll + cerrar
   navLinksSlidebar.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -69,22 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // =========================
-  // BOTONES WHATSAPP
-  // =========================
+  // WhatsApp en todos los botones hire-btn (navbar/hero/sidebar/about)
   hireButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const numero = "5493764564963";
       const mensaje = "¡Hola! Me gustaría contratarte para un proyecto web.";
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
       window.open(url, "_blank");
-      closeMenu(); // si fue desde sidebar
+      closeMenu();
     });
   });
 
-  // =========================
-  // SCROLL SUAVE (NAVBAR LINKS)
-  // =========================
   navLinksNavbar.forEach((a) => {
     a.addEventListener("click", (e) => {
       const href = a.getAttribute("href");
@@ -96,9 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // =========================
-  // REVEAL AL SCROLL
-  // =========================
+  // Reveal
   if (revealEls.length && !prefersReduced) {
     const io = new IntersectionObserver(
       (entries) => {
@@ -116,19 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
     revealEls.forEach((el) => el.classList.add("in-view"));
   }
 
-  // =========================
-  // STAGGER: Servicios
-  // =========================
+  // Stagger: Servicios
   const serviceCards = document.querySelectorAll(".services-grid .service-card.reveal");
   serviceCards.forEach((card, idx) => {
     card.style.transitionDelay = `${idx * 180}ms`;
   });
 
-  // =========================
-  // ✅ SCROLLSPY ROBUSTO (ACTIVA TODOS LOS LINKS)
-  // - funciona con secciones cortas (#contacto)
-  // - funciona con anclas dentro de secciones (#servicios)
-  // =========================
+  // ✅ Activa TODOS los links (Home/Nosotros/Servicios/Contacto)
   const sectionIds = [...new Set(
     allNavLinks
       .map((a) => a.getAttribute("href"))
@@ -151,14 +128,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const offset = getNavbarOffset() + 12;
     const y = window.scrollY + offset;
 
-    // Si estás al final de la página, marcá el último
     const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
     if (bottom) {
       setActiveLink(targets[targets.length - 1].id);
       return;
     }
 
-    // Elegimos el “último” target cuyo top ya pasó el offset
     let current = targets[0].id;
 
     for (const t of targets) {
