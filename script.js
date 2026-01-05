@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const slidebar = document.querySelector(".slidebar");
-  const menuIcon = document.querySelector(".menu-icon i");
-  const closeIcon = document.querySelector(".close-icon i");
+  const menuBtn = document.querySelector(".menu-icon");
+  const closeBtn = document.querySelector(".close-icon");
   const overlay = document.getElementById("overlay");
   const navbar = document.querySelector(".navbar");
 
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slidebar.classList.add("active");
     overlay?.classList.add("active");
     document.body.style.overflow = "hidden";
+    menuBtn?.setAttribute("aria-expanded", "true");
   };
 
   const closeMenu = () => {
@@ -39,45 +40,59 @@ document.addEventListener("DOMContentLoaded", () => {
     slidebar.classList.remove("active");
     overlay?.classList.remove("active");
     document.body.style.overflow = "";
+    menuBtn?.setAttribute("aria-expanded", "false");
   };
 
-  menuIcon?.addEventListener("click", openMenu);
-  closeIcon?.addEventListener("click", closeMenu);
+  // ✅ Click en el botón completo (no solo el <i>)
+  menuBtn?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
   overlay?.addEventListener("click", closeMenu);
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeMenu();
   });
 
+  // Navegación sidebar (con scroll suave + cierra menú)
   navLinksSlidebar.forEach((link) => {
     link.addEventListener("click", (e) => {
-      e.preventDefault();
       const targetId = link.getAttribute("href");
-      const targetEl = targetId ? document.querySelector(targetId) : null;
+      if (!targetId || !targetId.startsWith("#")) return;
+
+      const targetEl = document.querySelector(targetId);
+      if (!targetEl) return;
+
+      e.preventDefault();
       smoothScrollTo(targetEl);
       closeMenu();
     });
   });
 
-  // WhatsApp en todos los botones hire-btn (navbar/hero/sidebar/about)
-  hireButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const numero = "5493764564963";
-      const mensaje = "¡Hola! Me gustaría contratarte para un proyecto web.";
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-      window.open(url, "_blank");
-      closeMenu();
-    });
-  });
-
+  // Navegación navbar (con scroll suave)
   navLinksNavbar.forEach((a) => {
     a.addEventListener("click", (e) => {
       const href = a.getAttribute("href");
       if (!href || !href.startsWith("#")) return;
+
       const targetEl = document.querySelector(href);
       if (!targetEl) return;
+
       e.preventDefault();
       smoothScrollTo(targetEl);
+    });
+  });
+
+  // WhatsApp: aplica a todos los .hire-btn (previene doble navegación)
+  hireButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      // Si es <a>, evitamos que navegue por href además del window.open
+      e.preventDefault();
+
+      const numero = "5493764564963";
+      const mensaje = "¡Hola! Me gustaría contratarte para un proyecto web.";
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+      window.open(url, "_blank", "noopener");
+      closeMenu();
     });
   });
 
@@ -105,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     card.style.transitionDelay = `${idx * 180}ms`;
   });
 
-  // ✅ Activa TODOS los links (Home/Nosotros/Servicios/Contacto)
+  // ✅ Activa links según scroll (navbar + sidebar)
   const sectionIds = [...new Set(
     allNavLinks
       .map((a) => a.getAttribute("href"))
@@ -148,4 +163,29 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateActiveOnScroll, { passive: true });
   window.addEventListener("resize", updateActiveOnScroll);
   updateActiveOnScroll();
+
+  // ✅ Oculta el botón flotante cuando se ve el footer / contacto
+  const waFloat = document.querySelector(".wa-float");
+  const contactSection = document.querySelector("#contacto");
+  const footerEl = document.querySelector("footer.footer");
+
+  const hideTarget = contactSection || footerEl;
+
+  if (waFloat && hideTarget) {
+    const ioFloat = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Si el contacto/footer está visible => ocultar botón
+          waFloat.classList.toggle("is-hidden", entry.isIntersecting);
+        });
+      },
+      {
+        // Apenas asome un poco el contacto/footer, lo ocultamos
+        threshold: 0.05,
+      }
+    );
+
+    ioFloat.observe(hideTarget);
+  }
+
 });

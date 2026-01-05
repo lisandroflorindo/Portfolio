@@ -19,32 +19,31 @@
   font-family: "Poppins", sans-serif;
 }
 
-html{ scroll-behavior: smooth; }
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+}
 
 body{
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  padding-top: var(--nav-h);
+  padding-top: 0; /* antes: var(--nav-h) */
 }
 
 /* =========================
    LINKS / CTAs (sin subrayado)
 ========================= */
-a{ text-decoration: none; color: inherit; }
-a:hover{ text-decoration: none; }
-
-.hire-btn,
-.btn-primary,
-.btn-secondary{
-  text-decoration: none !important;
+a{
+  color: inherit;
+  text-decoration: none;
 }
 
 /* =========================
    NAVBAR
 ========================= */
 .navbar{
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -53,8 +52,6 @@ a:hover{ text-decoration: none; }
   align-items: center;
   min-height: var(--nav-h);
   padding: 22px 50px;
-  background-color: var(--card);
-  backdrop-filter: blur(10px);
   z-index: 1000;
 }
 
@@ -75,19 +72,6 @@ a:hover{ text-decoration: none; }
   padding-bottom: 8px;
 }
 .nav-links li a:hover{ color: var(--accent); }
-
-.nav-links a.active{ color: var(--accent); }
-.nav-links a.active::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:2px;
-  width:100%;
-  height:3px;
-  background: var(--accent);
-  border-radius: 999px;
-  opacity: .9;
-}
 
 /* CTA + logo mobile */
 .nav-cta{
@@ -113,17 +97,26 @@ a:hover{ text-decoration: none; }
 .hire-btn{
   display: inline-flex;
   align-items: center;
+  text-align: center;
+  justify-content: center;
   gap: 10px;
-  background: #fff;
-  color: #000;
-  padding: 8px 18px;
-  border: none;
+
+  background: rgba(255,255,255,.08);
+  color: #fff;
+
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,.14);
   border-radius: 10px;
+
   font-size: 16px;
   cursor: pointer;
-  transition: .25s ease;
+  transition: background .25s ease, border-color .25s ease, transform .2s ease;
 }
-.hire-btn:hover{ background: #ffd480; }
+.hire-btn:hover{
+  background: rgba(255,183,66,.16);
+  border-color: rgba(255,183,66,.35);
+  transform: translateY(-1px);
+}
 
 /* Menú mobile */
 .menu-icon{
@@ -232,17 +225,14 @@ a:hover{ text-decoration: none; }
 #inicio .hero{
   position: relative;
   overflow: hidden;
-
   background-image: url("images/hero.jpg");
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-
-  min-height: calc(100vh - var(--nav-h));
+  min-height: 100vh;
   display: flex;
   align-items: center;
-
-  padding: 34px 50px 24px;
+  padding: calc(var(--nav-h) + 34px) 50px 24px;
 }
 
 #inicio .hero::before{
@@ -266,8 +256,6 @@ a:hover{ text-decoration: none; }
 
   position: relative;
   z-index: 1;
-
-  /* ✅ centrado en todas las pantallas */
   justify-items: center;
 }
 
@@ -286,7 +274,7 @@ a:hover{ text-decoration: none; }
 
 .hero-subtitle{
   margin-top: 14px;
-  font-size: clamp(20px, 1.25vw, 18px);
+  font-size: clamp(16px, 1.25vw, 20px); /* ✅ clamp corregido */
   color: rgba(255,255,255,.82);
   line-height: 1.75;
   max-width: 62ch;
@@ -295,6 +283,7 @@ a:hover{ text-decoration: none; }
   text-shadow: 0 14px 30px rgba(0,0,0,.55);
 }
 
+/* Acciones (si las usás) */
 .hero-actions{
   display: flex;
   justify-content: center;
@@ -340,12 +329,12 @@ a:hover{ text-decoration: none; }
   box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 
+/* Métricas (si las usás) */
 .hero-metrics{
   margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-
   justify-items: center;
 }
 
@@ -355,7 +344,6 @@ a:hover{ text-decoration: none; }
   background: rgba(0,0,0,.28);
   border: 1px solid rgba(255,255,255,.12);
   transition: transform .2s ease, border-color .2s ease, background .2s ease;
-
   width: 100%;
 }
 .metric:hover{
@@ -420,8 +408,8 @@ a:hover{ text-decoration: none; }
 }
 
 .about-text p{
-  font-size: clamp(12px, 1.15vw, 18px);
-  color: var(--muted);
+  font-size: 20px;
+  color: var(--text);
   line-height: 1.85;
   margin-bottom: 20px;
   text-wrap: pretty;
@@ -429,48 +417,6 @@ a:hover{ text-decoration: none; }
 
 .about-text span{
   font-weight: 600;
-}
-
-/* Proceso */
-.process{
-  margin-top: 12px;
-  padding-top: 12px;
-}
-
-.process-grid{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 18px;
-  margin-bottom: 40px;
-}
-
-.process-card{
-  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 18px;
-  padding: 18px 16px;
-  box-shadow: 0 18px 45px rgba(0,0,0,.35);
-  transition: transform .2s ease, border-color .2s ease, background .2s ease;
-}
-.process-card:hover{
-  transform: translateY(-4px);
-  border-color: rgba(255,183,66,.26);
-  background: linear-gradient(180deg, rgba(255,183,66,.10), rgba(255,255,255,.03));
-}
-
-.process-card h3{
-  font-size: 18px;
-  color: #fff;
-  margin-bottom: 8px;
-  text-align: center;
-}
-.process-card p{
-  color: #d4d4d4;
-  font-size: 15px;
-  line-height: 1.6;
-  text-align: center;
-  text-wrap: pretty;
 }
 
 /* Highlight */
@@ -632,14 +578,12 @@ a:hover{ text-decoration: none; }
 
 /* <= 980px: About en columna + imagen controlada + imagen primero */
 @media screen and (max-width: 980px){
-  .process-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
   .about-grid{ grid-template-columns: 1fr; }
 
   .about-media{ display: none; }
   .about-media-mobile{ display: block; }
 
-  /* ✅ imagen primero y luego texto (sin tocar HTML) */
+  /* imagen primero y luego texto (sin tocar HTML) */
   #sobre-mi .about-text{
     display: flex;
     flex-direction: column;
@@ -648,7 +592,7 @@ a:hover{ text-decoration: none; }
   #sobre-mi .about-media-mobile{ order: -2; }
   #sobre-mi .about-text .section-title{ order: -1; }
 
-  /* ✅ controla tamaño en 420–980 */
+  /* controla tamaño en 420–980 */
   #sobre-mi .about-media-mobile{
     width: min(520px, 100%);
     margin: 18px auto 10px;
@@ -666,7 +610,7 @@ a:hover{ text-decoration: none; }
   .about-media-mobile{ display: none; }
 }
 
-/* <= 780px: navbar mobile (logo grande a la izquierda) + hero encuadre */
+/* <= 780px: navbar mobile (logo a la izquierda, menú a la derecha) */
 @media screen and (max-width: 780px){
   :root{ --nav-h: 118px; }
 
@@ -677,6 +621,9 @@ a:hover{ text-decoration: none; }
   }
 
   .nav-links{ display: none; }
+
+  /* En mobile el nav no muestra nada: no debe ocupar ancho */
+  .navbar nav{ display: none; }
 
   .menu-icon{
     display: block;
@@ -692,7 +639,7 @@ a:hover{ text-decoration: none; }
   .nav-logo{ display: inline-flex; justify-content: flex-start; }
 
   .nav-logo img{
-    height: 104px;
+    height: 105px;
     width: auto;
     max-width: 280px;
   }
@@ -705,8 +652,8 @@ a:hover{ text-decoration: none; }
   .about{ padding: 70px 22px 90px; }
 
   .about-text p{
-    font-size: 15px;
-    text-align: justify;
+    font-size: 18px;
+    text-align: left;
     padding: 5px;
   }
 
@@ -726,7 +673,7 @@ a:hover{ text-decoration: none; }
     max-width: 250px;
   }
 
-  .hero{ background-position: 50% 75%; }
+  #inicio .hero{ background-position: 50% 75%; }
 
   .about-media-mobile img{
     max-height: 340px;
@@ -742,8 +689,6 @@ a:hover{ text-decoration: none; }
 
   .hero-metrics{ gap: 8px; }
   .metric-number{ font-size: 12px; }
-
-  .process-grid{ grid-template-columns: 1fr; }
 }
 
 /* <= 360px: micro-ajustes */
@@ -754,4 +699,56 @@ a:hover{ text-decoration: none; }
     padding: 11px 12px;
   }
   .metric-number{ font-size: 11.5px; }
+}
+
+/* =========================
+   WHATSAPP FLOAT
+========================= */
+.wa-float{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2000;
+
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #25D366;
+  color: #fff;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.wa-float i{
+  font-size: 1.9rem;
+}
+
+.wa-float:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+/* En mobile lo subimos un poco para que no moleste */
+@media (max-width: 780px){
+  .wa-float{
+    right: 14px;
+    bottom: 14px;
+    width: 54px;
+    height: 54px;
+  }
+}
+
+/* Ocultar WhatsApp flotante cuando el footer está visible */
+@media (max-width: 780px){
+  .wa-float.is-hidden{
+    opacity: 0;
+    transform: scale(.92);
+    pointer-events: none;
+  }
 }
