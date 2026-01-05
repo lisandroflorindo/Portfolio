@@ -325,24 +325,21 @@ body.is-loaded .navbar{
   text-align: center;
 }
 
-.hero-title{
-  font-size: clamp(40px, 4.8vw, 64px);
-  line-height: 1.05;
-  max-width: 24ch;
-  margin: 0 auto;
-  text-shadow: 0 14px 30px rgba(0,0,0,.55);
+/* ✅ Visible por defecto (si JS falla, igual se ve) */
+.hero-title,
+.hero-subtitle{
+  opacity: 1;
+  transform: translateY(0);
+  will-change: transform, opacity;
 }
 
-.hero-subtitle{
-  margin-top: 14px;
-  font-size: clamp(16px, 1.25vw, 20px);
-  color: rgba(255,255,255,.82);
-  line-height: 1.75;
-  max-width: 62ch;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 0 14px 30px rgba(0,0,0,.55);
+/* ✅ Solo se “oculta” ANTES de cargar (mientras no esté is-loaded) */
+body:not(.is-loaded) .hero-title,
+body:not(.is-loaded) .hero-subtitle{
+  opacity: 0;
+  transform: translateY(14px);
 }
+
 
 /* Hero text entrance */
 .hero-title,
