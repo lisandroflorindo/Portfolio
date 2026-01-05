@@ -5,11 +5,11 @@
   --bg: #000;
   --card: #1c1c1c;
   --text: #fff;
-  --muted: #cfcfcf;
+  --muted: rgba(255,255,255,.78);
   --border: rgba(255,255,255,.12);
 
-  --nav-h-desktop: 90px;
-  --nav-h-mobile: 118px; /* ✅ ajustado para logo grande */
+  /* Navbar height (se ajusta en responsive) */
+  --nav-h: 90px;
 }
 
 *{
@@ -25,23 +25,18 @@ body{
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  padding-top: var(--nav-h-desktop);
+  padding-top: var(--nav-h);
 }
 
 /* =========================
-   LINKS / CTAs (sin subrayados)
+   LINKS / CTAs (sin subrayado)
 ========================= */
-a,
-a:hover{
-  text-decoration: none;
-}
+a{ text-decoration: none; color: inherit; }
+a:hover{ text-decoration: none; }
 
-a.hire-btn,
-a.btn-primary,
-a.btn-secondary,
-a.hire-btn:hover,
-a.btn-primary:hover,
-a.btn-secondary:hover{
+.hire-btn,
+.btn-primary,
+.btn-secondary{
   text-decoration: none !important;
 }
 
@@ -59,13 +54,15 @@ a.btn-secondary:hover{
   justify-content: space-between;
   align-items: center;
 
+  min-height: var(--nav-h);
   padding: 22px 50px;
+
   background: rgba(0,0,0,.55);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,.10);
 }
 
-/* Links (desktop) */
+/* Links desktop */
 .nav-links{
   display: flex;
   align-items: center;
@@ -76,12 +73,11 @@ a.btn-secondary:hover{
 .nav-links li a{
   color: #fff;
   font-size: 16px;
-  transition: color .3s ease;
+  transition: color .25s ease;
   display: inline-block;
   position: relative;
   padding-bottom: 8px;
 }
-
 .nav-links li a:hover{ color: var(--accent); }
 
 .nav-links a.active{ color: var(--accent); }
@@ -97,13 +93,13 @@ a.btn-secondary:hover{
   opacity: .9;
 }
 
+/* CTA + logo mobile */
 .nav-cta{
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-/* Logo mobile */
 .nav-logo{
   display: none;
   align-items: center;
@@ -114,11 +110,10 @@ a.btn-secondary:hover{
   width: 64px;
   height: 64px;
   object-fit: contain;
-  flex-shrink: 0;
   filter: drop-shadow(0 12px 28px rgba(0,0,0,.6));
 }
 
-/* CTA común (navbar/hero/sidebar) */
+/* Botón común */
 .hire-btn{
   display: inline-flex;
   align-items: center;
@@ -185,7 +180,6 @@ a.btn-secondary:hover{
   box-shadow: 5px 0 20px rgba(0,0,0,.4);
   border-right: 1px solid rgba(255,255,255,.1);
 }
-
 .slidebar.active{
   left: 0;
   opacity: 1;
@@ -207,7 +201,6 @@ a.btn-secondary:hover{
   align-items: center;
   margin-bottom: 8px;
 }
-
 .slidebar-logo img{
   width: 140px;
   height: auto;
@@ -228,7 +221,7 @@ a.btn-secondary:hover{
 .slidebar ul li a{
   color: #fff;
   font-size: 1.15rem;
-  transition: color .3s ease;
+  transition: color .25s ease;
 }
 .slidebar ul li a:hover{ color: var(--accent); }
 
@@ -246,20 +239,18 @@ a.btn-secondary:hover{
   position: relative;
   overflow: hidden;
 
-  /* ✅ imagen full hero */
-  background-image: url("images/trabajo.png");
+  background-image: url("images/hero.jpg");
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 
-  min-height: calc(100vh - var(--nav-h-desktop));
+  min-height: calc(100vh - var(--nav-h));
   display: flex;
   align-items: center;
 
   padding: 34px 50px 24px;
 }
 
-/* ✅ oscurecer imagen (sin caja) */
 #inicio .hero::before{
   content:"";
   position:absolute;
@@ -281,10 +272,10 @@ a.btn-secondary:hover{
 
   position: relative;
   z-index: 1;
-}
 
-/* ✅ centrado en TODAS las pantallas */
-.hero-inner{ justify-items: center; }
+  /* ✅ centrado en todas las pantallas */
+  justify-items: center;
+}
 
 .hero-left{
   max-width: 900px;
@@ -294,25 +285,19 @@ a.btn-secondary:hover{
 .hero-title{
   font-size: clamp(40px, 4.8vw, 64px);
   line-height: 1.05;
-  letter-spacing: -0.02em;
   max-width: 24ch;
-
-  margin-left: auto;
-  margin-right: auto;
-
+  margin: 0 auto;
   text-shadow: 0 14px 30px rgba(0,0,0,.55);
 }
 
 .hero-subtitle{
   margin-top: 14px;
-  font-size: clamp(15px, 1.25vw, 18px);
+  font-size: clamp(20px, 1.25vw, 18px);
   color: rgba(255,255,255,.82);
   line-height: 1.75;
   max-width: 62ch;
-
   margin-left: auto;
   margin-right: auto;
-
   text-shadow: 0 14px 30px rgba(0,0,0,.55);
 }
 
@@ -366,6 +351,7 @@ a.btn-secondary:hover{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+
   justify-items: center;
 }
 
@@ -375,9 +361,9 @@ a.btn-secondary:hover{
   background: rgba(0,0,0,.28);
   border: 1px solid rgba(255,255,255,.12);
   transition: transform .2s ease, border-color .2s ease, background .2s ease;
+
   width: 100%;
 }
-
 .metric:hover{
   transform: translateY(-2px);
   border-color: rgba(255,183,66,.30);
@@ -391,9 +377,6 @@ a.btn-secondary:hover{
   white-space: nowrap;
   letter-spacing: .2px;
 }
-
-/* oculta el bloque derecho del hero si existe */
-.hero-right{ display: none !important; }
 
 /* =========================
    ABOUT + PROCESO
@@ -410,6 +393,7 @@ a.btn-secondary:hover{
   display: flex;
   justify-content: center;
   align-items: center;
+
   background: var(--bg);
   color: var(--text);
   padding: 90px 40px 110px;
@@ -435,7 +419,6 @@ a.btn-secondary:hover{
   height: clamp(320px, 44vw, 560px);
   object-fit: cover;
   display: block;
-  filter: drop-shadow(0 18px 45px rgba(0,0,0,.55));
 }
 
 .about-text{
@@ -443,11 +426,15 @@ a.btn-secondary:hover{
 }
 
 .about-text p{
-  font-size: clamp(15px, 1.15vw, 18px);
-  color: rgba(255,255,255,.78);
+  font-size: clamp(12px, 1.15vw, 18px);
+  color: var(--muted);
   line-height: 1.85;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
   text-wrap: pretty;
+}
+
+.about-text span{
+  font-weight: 600;
 }
 
 /* Proceso */
@@ -472,7 +459,6 @@ a.btn-secondary:hover{
   box-shadow: 0 18px 45px rgba(0,0,0,.35);
   transition: transform .2s ease, border-color .2s ease, background .2s ease;
 }
-
 .process-card:hover{
   transform: translateY(-4px);
   border-color: rgba(255,183,66,.26);
@@ -485,7 +471,6 @@ a.btn-secondary:hover{
   margin-bottom: 8px;
   text-align: center;
 }
-
 .process-card p{
   color: #d4d4d4;
   font-size: 15px;
@@ -520,7 +505,6 @@ a.btn-secondary:hover{
   overflow: hidden;
   transition: transform .3s ease, box-shadow .3s ease;
 }
-
 .service-card:hover{
   transform: translateY(-8px);
   box-shadow: 0 10px 25px rgba(255,183,66,.25);
@@ -531,7 +515,6 @@ a.btn-secondary:hover{
   overflow: hidden;
   height: 180px;
 }
-
 .image-wrapper img{
   width: 100%;
   height: 100%;
@@ -556,7 +539,6 @@ a.btn-secondary:hover{
   margin: 20px 20px 10px;
   text-align: center;
 }
-
 .service-card p{
   color: #ccc;
   font-size: 15px;
@@ -609,7 +591,7 @@ a.btn-secondary:hover{
 .footer-column ul li a{
   color: #ccc;
   font-size: 0.95rem;
-  transition: color .3s ease;
+  transition: color .25s ease;
 }
 
 .footer-column p i{
@@ -631,11 +613,10 @@ a.btn-secondary:hover{
   gap: 20px;
   margin-top: 15px;
 }
-
 .social-links a{
   color: #fff;
   font-size: 1.8rem;
-  transition: transform .3s ease, color .3s ease;
+  transition: transform .25s ease, color .25s ease;
 }
 .social-links a:hover{
   color: #ffd480;
@@ -654,30 +635,59 @@ a.btn-secondary:hover{
 /* =========================
    RESPONSIVE
 ========================= */
+
+/* <= 980px: About en columna + imagen controlada + imagen primero */
 @media screen and (max-width: 980px){
   .process-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
   .about-grid{ grid-template-columns: 1fr; }
+
   .about-media{ display: none; }
+  .about-media-mobile{ display: block; }
+
+  /* ✅ imagen primero y luego texto (sin tocar HTML) */
+  #sobre-mi .about-text{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  #sobre-mi .about-media-mobile{ order: -2; }
+  #sobre-mi .about-text .section-title{ order: -1; }
+
+  /* ✅ controla tamaño en 420–980 */
+  #sobre-mi .about-media-mobile{
+    width: min(520px, 100%);
+    margin: 18px auto 10px;
+  }
+  #sobre-mi .about-media-mobile img{
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+  }
 }
 
+/* >= 981px: ocultar versión mobile de la imagen */
 @media screen and (min-width: 981px){
   .about-media-mobile{ display: none; }
 }
 
+/* <= 780px: navbar mobile (logo grande a la izquierda) + hero encuadre */
 @media screen and (max-width: 780px){
-  /* ✅ navbar mobile: logo grande a la izquierda */
-  body{ padding-top: var(--nav-h-mobile); }
+  :root{ --nav-h: 118px; }
 
   .navbar{
-    min-height: var(--nav-h-mobile);
-    padding: 10px 14px;
-
     justify-content: flex-start;
     gap: 12px;
+    padding: 10px 14px;
   }
 
   .nav-links{ display: none; }
-  .menu-icon{ display: block; margin-left: auto; }
+
+  .menu-icon{
+    display: block;
+    margin-left: auto;
+  }
 
   .nav-cta{
     margin-right: auto;
@@ -691,37 +701,16 @@ a.btn-secondary:hover{
     height: 104px;
     width: auto;
     max-width: 280px;
-    transform: none;
   }
 
-  /* hero ocupa pantalla real con nav alto */
   #inicio .hero{
-    min-height: calc(100vh - var(--nav-h-mobile));
     padding: 22px 16px 16px;
-
-    /* ajuste de encuadre para tu foto */
     background-position: 50% 70%;
-  }
-
-  .hero-title{
-    font-size: 40px;
-    line-height: 1.12;
-    margin-top: 8px;
-  }
-
-  .hero-subtitle{
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  .hero-actions{
-    margin-top: 14px;
-    gap: 10px;
   }
 
   .about{ padding: 70px 22px 90px; }
 
-  .about-grid p{
+  .about-text p{
     font-size: 15px;
     text-align: justify;
     padding: 5px;
@@ -734,22 +723,19 @@ a.btn-secondary:hover{
   .footer-column{ width: 100%; }
 }
 
+/* <= 420px: nav y encuadre más fino */
 @media screen and (max-width: 420px){
-  /* iPhones chicos: logo apenas más chico y encuadre un toque más abajo */
-  :root{ --nav-h-mobile: 110px; }
-
-  body{ padding-top: var(--nav-h-mobile); }
-
-  .navbar{ min-height: var(--nav-h-mobile); }
+  :root{ --nav-h: 110px; }
 
   .nav-logo img{
     height: 96px;
     max-width: 250px;
   }
 
-  #inicio .hero{
-    min-height: calc(100vh - var(--nav-h-mobile));
-    background-position: 50% 75%;
+  .hero{ background-position: 50% 75%; }
+
+  .about-media-mobile img{
+    max-height: 340px;
   }
 
   .btn-primary,
@@ -766,6 +752,7 @@ a.btn-secondary:hover{
   .process-grid{ grid-template-columns: 1fr; }
 }
 
+/* <= 360px: micro-ajustes */
 @media screen and (max-width: 360px){
   .btn-primary,
   .btn-secondary{
@@ -773,39 +760,4 @@ a.btn-secondary:hover{
     padding: 11px 12px;
   }
   .metric-number{ font-size: 11.5px; }
-}
-
-/* =========================================
-   FIX: Imagen "Sobre Nosotros" entre 420 y 980
-========================================= */
-@media screen and (max-width: 980px){
-
-  /* Asegura que solo se vea la versión mobile */
-  .about-media{ display: none !important; }
-  .about-media-mobile{ display: block !important; }
-
-  /* Contenedor centrado y con ancho controlado */
-  .about-media-mobile{
-    width: min(520px, 100%);
-    margin: 18px auto 18px;
-  }
-
-  /* Evita que se vea gigantesca */
-  .about-media-mobile img{
-    width: 100%;
-    height: auto;         /* clave: no altura fija */
-    max-height: 320px;   /* límite en tablets */
-    object-fit: cover; 
-    border-radius: 16px;
-  }
-}
-
-/* Ajuste extra para 420px o menos */
-@media screen and (max-width: 420px){
-  .about-media-mobile{
-    width: min(420px, 100%);
-  }
-  .about-media-mobile img{
-    max-height: 240px !important;
-  }
 }
