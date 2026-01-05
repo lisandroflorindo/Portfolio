@@ -48,18 +48,14 @@ a:hover{ text-decoration: none; }
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   min-height: var(--nav-h);
   padding: 22px 50px;
-
-  background: rgba(0,0,0,.55);
+  background-color: var(--card);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,.10);
+  z-index: 1000;
 }
 
 /* Links desktop */
@@ -118,13 +114,11 @@ a:hover{ text-decoration: none; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-
   background: #fff;
   color: #000;
   padding: 8px 18px;
   border: none;
   border-radius: 10px;
-
   font-size: 16px;
   cursor: pointer;
   transition: .25s ease;
