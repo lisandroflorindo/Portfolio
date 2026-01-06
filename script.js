@@ -172,4 +172,18 @@ document.addEventListener("DOMContentLoaded", () => {
       loop: true,
     });
   }
+
+  // ===== Hero typing (Typed.js) =====
+  const titleEl = document.querySelector("#typedTitle");
+  if (titleEl && window.Typed) {
+    new Typed("#typedTitle", {
+      strings: ["Soluciones Informáticas"],
+      typeSpeed: 30,
+      startDelay: 30,
+      showCursor: true,
+      cursorChar: "|",
+      loop: false,
+    });
+  }
+
 });

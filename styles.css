@@ -10,6 +10,10 @@
 
   /* Navbar height (se ajusta en responsive) */
   --nav-h: 90px;
+
+  /* paddings fluidos */
+  --pad-x: clamp(14px, 4vw, 50px);
+  --pad-section-y: clamp(64px, 7vw, 110px);
 }
 
 *{
@@ -31,6 +35,13 @@ body{
   padding-top: 0;
 }
 
+/* Evita desbordes raros en mobile */
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* =========================
    LINKS / CTAs (sin subrayado)
 ========================= */
@@ -47,11 +58,13 @@ a{
   top: 0;
   left: 0;
   width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   min-height: var(--nav-h);
-  padding: 22px 50px;
+  padding: 22px var(--pad-x);
   z-index: 1000;
 }
 
@@ -229,10 +242,12 @@ a{
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: calc(var(--nav-h) + 34px) 50px 24px;
+
+  padding: calc(var(--nav-h) + 34px) var(--pad-x) 24px;
 }
 
 #inicio .hero::before{
@@ -284,38 +299,43 @@ a{
 }
 
 /* =========================
+   SECCIONES BASE
+========================= */
+.about,
+.clients{
+  background: var(--bg);
+  color: var(--text);
+  padding: var(--pad-section-y) var(--pad-x);
+}
+
+.about-content,
+.clients-content{
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* =========================
    ABOUT
 ========================= */
 .section-title{
   font-size: clamp(24px, 2.2vw, 34px);
   color: var(--accent);
   margin-bottom: 18px;
-  text-align: left; /* en desktop, arriba del texto */
+  text-align: left;
   letter-spacing: -0.01em;
-}
-
-.about{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: var(--bg);
-  color: var(--text);
-  padding: 90px 40px 110px;
-}
-
-.about-content{
-  max-width: 1100px;
-  width: 100%;
 }
 
 .about-grid{
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 38px;
+  gap: clamp(18px, 3.2vw, 38px);
   align-items: center;
   margin-top: 10px;
   margin-bottom: 46px;
+
+  /* clave para que no reviente en mobile */
+  min-width: 0;
 }
 
 .about-media img,
@@ -323,32 +343,26 @@ a{
   width: 100%;
   height: clamp(260px, 40vw, 520px);
   object-fit: contain;
-  display: block;
 }
 
 .about-text{
   text-align: left;
+  min-width: 0;
 }
 
-/* ✅ Justificado (Nosotros) */
 .about-text p{
-  font-size: 20px;
+  font-size: clamp(16px, 1.6vw, 20px);
   color: var(--text);
   line-height: 1.85;
   margin-bottom: 20px;
 
   text-align: justify;
   text-justify: inter-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-
   text-wrap: pretty;
 }
 
-/* Highlight */
 .about-content .highlight{
-  font-size: 25px;
+  font-size: clamp(20px, 2.1vw, 25px);
   color: var(--accent);
   font-weight: 700;
   margin-top: 10px;
@@ -415,23 +429,9 @@ a{
 }
 
 /* =========================
-   CLIENTES (1 cliente por ahora, centrado y “más redondo”)
+   CLIENTES (círculo perfecto)
 ========================= */
-.clients{
-  background: var(--bg);
-  color: var(--text);
-  padding: 90px 40px 110px;
-}
-
-.clients-content{
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.clients .section-title{
-  text-align: center;
-}
+.clients .section-title{ text-align: center; }
 
 .clients-subtitle{
   margin: 8px auto 26px;
@@ -444,54 +444,45 @@ a{
 
 .clients-grid{
   display: grid;
-  grid-template-columns: 1fr;   /* ✅ 1 logo = 1 columna */
-  place-items: center;          /* ✅ centrado real */
+  grid-template-columns: 1fr;
+  place-items: center;
   gap: 16px;
 }
 
-/* Card tipo “medallón” para que no se vea tan cuadrado */
 .client-card{
-  padding: 0px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;         /* ✅ súper redondeado */
-  overflow: hidden;             /* ✅ recorta el cuadrado del JPG */
-  transition: transform .25s ease, border-color .25s ease, background .25s ease;
+  width: 200px;
+  max-width: 80vw;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  display: grid;
+  place-items: center;
+
+  background: var(--text);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+
+  justify-self: center;
+  align-self: center;
+
+  transition: transform .25s ease, border-color .25s ease;
 }
 
 .client-card img{
   width: 100%;
-  max-width: 360px;
-  height: 170px;
+  height: 100%;
   object-fit: contain;
-  transition: filter .25s ease, opacity .25s ease, transform .25s ease;
+  padding: 0%;
+  transition: transform .25s ease;
 }
 
 .client-card:hover{
   transform: translateY(-2px);
+  border-color: rgba(255,183,66,.28);
 }
-
-.client-card:hover img{
-  filter: none;
-  opacity: 1;
-  transform: scale(1.02);
-}
-
-/* Mobile: centrado y un poco más compacto */
-@media (max-width: 780px){
-  .clients{ padding: 70px 22px 90px; }
-
-  .client-card{
-    width: min(420px, 100%);
-    min-height: 200px;
-    padding: 22px 18px;
-  }
-  .client-card img{
-    max-width: 320px;
-    height: 150px;
-  }
-}
+.client-card:hover img{ transform: scale(1.02); }
 
 /* =========================
    FOOTER
@@ -499,7 +490,7 @@ a{
 .footer{
   background-color: var(--card);
   color: #fff;
-  padding: 50px 20px 20px;
+  padding: 50px var(--pad-x) 20px;
   text-align: center;
 }
 
@@ -569,14 +560,15 @@ a{
    RESPONSIVE
 ========================= */
 
-/* <= 980px: About en columna + título arriba de imagen + imagen arriba de texto */
+/* <= 980px */
 @media screen and (max-width: 980px){
-  .about-grid{ grid-template-columns: 1fr; }
+  .about-grid{
+    grid-template-columns: 1fr;
+  }
 
   .about-media{ display: none; }
   .about-media-mobile{ display: block; }
 
-  /* Reordenamiento: TÍTULO -> IMAGEN -> TEXTO */
   #sobre-mi .about-text{
     display: flex;
     flex-direction: column;
@@ -585,7 +577,6 @@ a{
   #sobre-mi .about-text .section-title{ order: -3; text-align: center; }
   #sobre-mi .about-media-mobile{ order: -2; }
 
-  /* controla tamaño en 420–980 */
   #sobre-mi .about-media-mobile{
     width: min(520px, 100%);
     margin: 10px auto 10px;
@@ -597,21 +588,22 @@ a{
     object-fit: contain;
   }
 
+  .section-title{ text-align: center; }
 }
 
-/* >= 981px: ocultar versión mobile de la imagen */
+/* >= 981px */
 @media screen and (min-width: 981px){
   .about-media-mobile{ display: none; }
 }
 
-/* <= 780px: navbar mobile */
+/* <= 780px */
 @media screen and (max-width: 780px){
   :root{ --nav-h: 118px; }
 
   .navbar{
     justify-content: flex-start;
     gap: 12px;
-    padding: 10px 14px;
+    padding: 10px var(--pad-x);
   }
 
   .nav-links{ display: none; }
@@ -637,32 +629,19 @@ a{
   }
 
   #inicio .hero{
-    padding: 22px 16px 16px;
+    padding: 22px var(--pad-x) 16px;
     background-position: 50% 70%;
   }
 
-  .about{ padding: 70px 22px 90px; }
-
   .about-text p{
-    font-size: 18px;
     text-align: justify;
-    padding: 5px;
   }
 
-  .clients{ 
-    padding: 70px 22px 80px; 
+  .client-card{
+    width: 180px;
+    max-width: 72vw;
   }
-  
-   .client-card{
-    width: min(420px, 100%);
-    min-height: 200px;
-    padding: 22px 18px;
-  }
-  .client-card img{
-    max-width: 300px;
-    height: 140px;
-  }
-  
+
   .footer-container{
     flex-direction: column;
     text-align: center;
@@ -670,7 +649,7 @@ a{
   .footer-column{ width: 100%; }
 }
 
-/* <= 420px: nav y encuadre más fino */
+/* <= 420px */
 @media screen and (max-width: 420px){
   :root{ --nav-h: 110px; }
 
@@ -684,8 +663,8 @@ a{
   .about-media-mobile img{
     max-height: 340px;
   }
-
 }
+
 /* =========================
    WHATSAPP FLOAT
 ========================= */
@@ -726,9 +705,6 @@ a{
     width: 54px;
     height: 54px;
   }
-}
-
-@media (max-width: 780px){
   .wa-float.is-hidden{
     opacity: 0;
     transform: scale(.92);
