@@ -35,6 +35,10 @@ body{
   padding-top: 0;
 }
 
+html, body{
+  overflow-x: hidden;
+}
+
 /* Evita desbordes raros en mobile */
 img{
   max-width: 100%;
@@ -161,7 +165,7 @@ a{
 .slidebar{
   position: fixed;
   top: 0;
-  left: -100%;
+  left: 0; /* ✅ siempre en 0 */
   width: 70%;
   max-width: 340px;
   height: 100%;
@@ -174,14 +178,19 @@ a{
   align-items: center;
 
   z-index: 1300;
+
+  /* ✅ lo sacamos de pantalla con transform (no genera scroll lateral) */
+  transform: translateX(-110%);
   opacity: 0;
-  transition: left .6s cubic-bezier(0.25, 1, 0.5, 1), opacity .3s ease;
+
+  transition: transform .6s cubic-bezier(0.25, 1, 0.5, 1), opacity .3s ease;
 
   box-shadow: 5px 0 20px rgba(0,0,0,.4);
   border-right: 1px solid rgba(255,255,255,.1);
 }
+
 .slidebar.active{
-  left: 0;
+  transform: translateX(0);
   opacity: 1;
 }
 
