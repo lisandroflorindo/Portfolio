@@ -28,13 +28,8 @@ body{
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  padding-top: 0;
+  padding-top: 0; /* antes: var(--nav-h) */
 }
-
-body.no-scroll{
-  overflow: hidden;
-}
-
 
 /* =========================
    LINKS / CTAs (sin subrayado)
@@ -60,28 +55,6 @@ a{
   z-index: 1000;
 }
 
-/* ===== Navbar animation on load ===== */
-.navbar{
-  opacity: 0;
-  transform: translateY(-14px);
-  transition: background .25s ease, box-shadow .25s ease, border-color .25s ease;
-  will-change: transform, opacity;
-}
-
-body.is-loaded .navbar{
-  animation: navDrop .75s cubic-bezier(0.25, 1, 0.5, 1) both;
-}
-
-/* Navbar "solid" on scroll */
-.navbar.navbar--solid{
-  position: fixed; /* se vuelve sticky al scrollear */
-  background: rgba(0,0,0,.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,.10);
-  box-shadow: 0 14px 36px rgba(0,0,0,.35);
-}
-
 /* Links desktop */
 .nav-links{
   display: flex;
@@ -98,23 +71,6 @@ body.is-loaded .navbar{
   position: relative;
   padding-bottom: 8px;
 }
-
-.nav-links li a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  height:2px;
-  width:0%;
-  background: var(--accent);
-  transition: width .25s ease;
-  border-radius: 2px;
-}
-.nav-links li a:hover::after{
-  width:100%;
-}
-
-
 .nav-links li a:hover{ color: var(--accent); }
 
 /* CTA + logo mobile */
@@ -264,57 +220,40 @@ body.is-loaded .navbar{
 }
 
 /* =========================
-   HERO (background full + overlay + motion)
+   HERO (background full + overlay)
 ========================= */
 #inicio .hero{
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: calc(var(--nav-h) + 34px) 50px 24px;
-
-  /* el fondo pasa a pseudo-elemento para poder animarlo con transform */
-  background: none;
-}
-
-/* Imagen de fondo animable */
-#inicio .hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-
   background-image: url("images/hero.jpg");
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-
-  transform: translateY(var(--hero-par, 0px)) scale(1.06);
-  will-change: transform;
-
-  animation: kenburns 14s ease-in-out infinite alternate;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--nav-h) + 34px) 50px 24px;
 }
 
-/* Overlay arriba del fondo */
 #inicio .hero::before{
   content:"";
   position:absolute;
   inset:0;
   background:
-    linear-gradient(0deg, rgba(0,0,0,.74), rgba(0,0,0,.80)),
-    linear-gradient(90deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.18) 60%, rgba(0,0,0,.38) 100%);
+    linear-gradient(0deg, rgba(0,0,0,.62), rgba(0,0,0,.62)),
+    linear-gradient(90deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.10) 60%, rgba(0,0,0,.30) 100%);
   pointer-events:none;
-  z-index: 1;
 }
-
 
 .hero-inner{
   max-width: 1100px;
   margin: 0 auto;
   width: 100%;
+
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
+
   position: relative;
   z-index: 1;
   justify-items: center;
@@ -325,47 +264,110 @@ body.is-loaded .navbar{
   text-align: center;
 }
 
-/* ✅ Visible por defecto (si JS falla, igual se ve) */
-.hero-title,
+.hero-title{
+  font-size: clamp(40px, 4.8vw, 64px);
+  line-height: 1.05;
+  max-width: 24ch;
+  margin: 0 auto;
+  text-shadow: 0 14px 30px rgba(0,0,0,.55);
+}
+
 .hero-subtitle{
-  opacity: 1;
-  transform: translateY(0);
-  will-change: transform, opacity;
+  margin-top: 14px;
+  font-size: clamp(16px, 1.25vw, 20px); /* ✅ clamp corregido */
+  color: rgba(255,255,255,.82);
+  line-height: 1.75;
+  max-width: 62ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 14px 30px rgba(0,0,0,.55);
 }
 
-/* ✅ Solo se “oculta” ANTES de cargar (mientras no esté is-loaded) */
-body:not(.is-loaded) .hero-title,
-body:not(.is-loaded) .hero-subtitle{
-  opacity: 0;
-  transform: translateY(14px);
+/* Acciones (si las usás) */
+.hero-actions{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
 }
 
+.btn-primary,
+.btn-secondary{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
-/* Hero text entrance */
-.hero-title,
-.hero-subtitle{
-  opacity: 0;
-  transform: translateY(14px);
-  will-change: transform, opacity;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
 }
 
-body.is-loaded .hero-title{
-  animation: fadeUp .85s cubic-bezier(0.25, 1, 0.5, 1) .10s both;
+.btn-primary{
+  background: linear-gradient(90deg, rgba(255,183,66,1), rgba(255,212,128,1));
+  color: #000;
+  border: 1px solid rgba(255,183,66,.35);
+  box-shadow: 0 16px 46px rgba(255,183,66,.18);
+}
+.btn-primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 20px 56px rgba(255,183,66,.22);
 }
 
-body.is-loaded .hero-subtitle{
-  animation: fadeUp .85s cubic-bezier(0.25, 1, 0.5, 1) .25s both;
+.btn-secondary{
+  background: rgba(255,255,255,.07);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.18);
+}
+.btn-secondary:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,183,66,.45);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 
+/* Métricas (si las usás) */
+.hero-metrics{
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  justify-items: center;
+}
+
+.metric{
+  padding: 12px 12px;
+  border-radius: 16px;
+  background: rgba(0,0,0,.28);
+  border: 1px solid rgba(255,255,255,.12);
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  width: 100%;
+}
+.metric:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,183,66,.30);
+  background: rgba(255,183,66,.06);
+}
+
+.metric-number{
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: .2px;
+}
 
 /* =========================
-   ABOUT
+   ABOUT + PROCESO
 ========================= */
 .section-title{
   font-size: clamp(24px, 2.2vw, 34px);
   color: var(--accent);
   margin-bottom: 18px;
-  text-align: left; /* en desktop, arriba del texto */
+  text-align: center;
   letter-spacing: -0.01em;
 }
 
@@ -396,35 +398,25 @@ body.is-loaded .hero-subtitle{
 .about-media img,
 .about-media-mobile img{
   width: 100%;
-  height: clamp(260px, 40vw, 520px);
-  object-fit: contain;
+  height: clamp(320px, 44vw, 560px);
+  object-fit: cover;
   display: block;
-}
-
-/* float sutil en imágenes ya visibles */
-.about-media.in-view img,
-.about-media-mobile.in-view img{
-  animation: float 7s ease-in-out infinite;
 }
 
 .about-text{
   text-align: left;
 }
 
-/* ✅ Justificado (Nosotros) */
 .about-text p{
   font-size: 20px;
   color: var(--text);
   line-height: 1.85;
   margin-bottom: 20px;
-
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-
   text-wrap: pretty;
+}
+
+.about-text span{
+  font-weight: 600;
 }
 
 /* Highlight */
@@ -495,43 +487,18 @@ body.is-loaded .hero-subtitle{
   text-align: center;
 }
 
-/* ===== REVEAL SAFE ===== */
-/* Sin JS: SIEMPRE visible */
-.no-js .reveal{
-  opacity: 1;
-  transform: none;
-  filter: none;
-}
-
-/* Con JS: se oculta hasta que entre en pantalla */
-.js .reveal{
+/* =========================
+   REVEAL
+========================= */
+.reveal{
   opacity: 0;
   transform: translateY(18px);
-  filter: blur(7px);
-
-  transition:
-    opacity .75s ease,
-    transform .85s cubic-bezier(0.25, 1, 0.5, 1),
-    filter .75s ease;
-
-  transition-delay: var(--d, 0ms);
-  will-change: transform, opacity, filter;
+  transition: opacity .6s ease, transform .6s ease;
 }
-
-.js .reveal.in-view{
+.reveal.in-view{
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
 }
-
-/* Variante imagen */
-.js .reveal.reveal-img{
-  transform: translateY(18px) scale(.985);
-}
-.js .reveal.reveal-img.in-view{
-  transform: translateY(0) scale(1);
-}
-
 
 /* =========================
    FOOTER
@@ -609,26 +576,26 @@ body.is-loaded .hero-subtitle{
    RESPONSIVE
 ========================= */
 
-/* <= 980px: About en columna + título arriba de imagen + imagen arriba de texto */
+/* <= 980px: About en columna + imagen controlada + imagen primero */
 @media screen and (max-width: 980px){
   .about-grid{ grid-template-columns: 1fr; }
 
   .about-media{ display: none; }
   .about-media-mobile{ display: block; }
 
-  /* Reordenamiento: TÍTULO -> IMAGEN -> TEXTO */
+  /* imagen primero y luego texto (sin tocar HTML) */
   #sobre-mi .about-text{
     display: flex;
     flex-direction: column;
     gap: 14px;
   }
-  #sobre-mi .about-text .section-title{ order: -3; text-align: center; }
   #sobre-mi .about-media-mobile{ order: -2; }
+  #sobre-mi .about-text .section-title{ order: -1; }
 
   /* controla tamaño en 420–980 */
   #sobre-mi .about-media-mobile{
     width: min(520px, 100%);
-    margin: 10px auto 10px;
+    margin: 18px auto 10px;
   }
   #sobre-mi .about-media-mobile img{
     width: 100%;
@@ -643,7 +610,7 @@ body.is-loaded .hero-subtitle{
   .about-media-mobile{ display: none; }
 }
 
-/* <= 780px: navbar mobile */
+/* <= 780px: navbar mobile (logo a la izquierda, menú a la derecha) */
 @media screen and (max-width: 780px){
   :root{ --nav-h: 118px; }
 
@@ -654,6 +621,8 @@ body.is-loaded .hero-subtitle{
   }
 
   .nav-links{ display: none; }
+
+  /* En mobile el nav no muestra nada: no debe ocupar ancho */
   .navbar nav{ display: none; }
 
   .menu-icon{
@@ -676,7 +645,7 @@ body.is-loaded .hero-subtitle{
   }
 
   #inicio .hero{
-    padding: calc(var(--nav-h) + 18px) 16px 16px;
+    padding: 22px 16px 16px;
     background-position: 50% 70%;
   }
 
@@ -684,7 +653,7 @@ body.is-loaded .hero-subtitle{
 
   .about-text p{
     font-size: 18px;
-    text-align: justify;
+    text-align: left;
     padding: 5px;
   }
 
@@ -709,6 +678,27 @@ body.is-loaded .hero-subtitle{
   .about-media-mobile img{
     max-height: 340px;
   }
+
+  .btn-primary,
+  .btn-secondary{
+    padding: 12px 14px;
+    font-size: 14px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .hero-metrics{ gap: 8px; }
+  .metric-number{ font-size: 12px; }
+}
+
+/* <= 360px: micro-ajustes */
+@media screen and (max-width: 360px){
+  .btn-primary,
+  .btn-secondary{
+    font-size: 13px;
+    padding: 11px 12px;
+  }
+  .metric-number{ font-size: 11.5px; }
 }
 
 /* =========================
@@ -744,6 +734,7 @@ body.is-loaded .hero-subtitle{
   filter: brightness(1.05);
 }
 
+/* En mobile lo subimos un poco para que no moleste */
 @media (max-width: 780px){
   .wa-float{
     right: 14px;
@@ -753,39 +744,11 @@ body.is-loaded .hero-subtitle{
   }
 }
 
+/* Ocultar WhatsApp flotante cuando el footer está visible */
 @media (max-width: 780px){
   .wa-float.is-hidden{
     opacity: 0;
     transform: scale(.92);
     pointer-events: none;
-  }
-}
-
-@keyframes navDrop{
-  from{ opacity: 0; transform: translateY(-14px); }
-  to{ opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeUp{
-  from{ opacity: 0; transform: translateY(14px); }
-  to{ opacity: 1; transform: translateY(0); }
-}
-
-@keyframes kenburns{
-  from{ transform: translateY(var(--hero-par, 0px)) scale(1.06); }
-  to{ transform: translateY(calc(var(--hero-par, 0px) * -1)) scale(1.14); }
-}
-
-@keyframes float{
-  0%, 100%{ transform: translateY(0); }
-  50%{ transform: translateY(-6px); }
-}
-
-/* Respeta usuarios que prefieren menos movimiento */
-@media (prefers-reduced-motion: reduce){
-  *{
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
   }
 }
