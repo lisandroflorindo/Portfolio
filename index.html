@@ -15,7 +15,7 @@
     <nav aria-label="Navegación principal">
       <ul class="nav-links">
         <li><a href="#inicio">Home</a></li>
-        <li><a href="#sobre-mi">Nosotros</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -55,7 +55,7 @@
     <nav aria-label="Navegación móvil">
       <ul>
         <li><a href="#inicio">Home</a></li>
-        <li><a href="#sobre-mi">Nosotros</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -70,17 +70,18 @@
   <section id="inicio">
     <main class="hero">
       <div class="hero-inner">
-        <div class="hero-left reveal">
+        <!-- ✅ sin reveal para que nunca quede invisible en mobile -->
+        <div class="hero-left">
           <h1 class="hero-title">Soluciones Informáticas</h1>
           <p class="hero-subtitle">
-            Nos adaptamos a las necesidades de tu negocio.
+            Me adapto a las necesidades de tu negocio.
           </p>
         </div>
       </div>
     </main>
   </section>
 
-  <!-- NOSOTROS -->
+  <!-- SOBRE MÍ -->
   <section id="sobre-mi" class="about">
     <div class="about-content">
       <div class="about-grid">
@@ -89,23 +90,23 @@
         </div>
 
         <div class="about-text reveal">
-          <h2 class="section-title">Sobre nosotros</h2>
+          <h2 class="section-title">Sobre mí</h2>
 
           <p>
-            En <strong>Soluciones Informáticas</strong> ayudo a empresas, negocios y emprendedores a mejorar su presencia digital con una web moderna, rápida y preparada para convertir visitas en clientes.
+            Soy <strong>Lisandro Florindo</strong> y en <strong>Soluciones Informáticas</strong> ayudo a empresas, negocios y emprendedores a mejorar su presencia digital con una web moderna, rápida y preparada para convertir visitas en clientes.
+          </p>
+
+          <p>
+            Me encargo de todo el proceso: desde la idea inicial hasta la publicación, cuidando el diseño, el rendimiento y la experiencia del usuario.
           </p>
 
           <div class="about-media-mobile">
             <img src="images/solucionesinformaticas.png" alt="LogoMobile" />
           </div>
-
-          <p>
-            Trabajo desde la idea inicial hasta la publicación, cuidando diseño, rendimiento y la experiencia del usuario.
-          </p>
         </div>
       </div>
 
-      <p class="highlight reveal">Nuestros Servicios</p>
+      <p class="highlight reveal">Mis Servicios</p>
 
       <div id="servicios" class="services-grid">
         <div class="service-card reveal">
@@ -123,7 +124,7 @@
             <span class="img-overlay"></span>
           </div>
           <h3>Aplicaciones Web</h3>
-          <p>Funciones a medida para tu negocio adaptadas a tus necesidades.</p>
+          <p>Funciones a medida para tu negocio, adaptadas a tus necesidades.</p>
         </div>
 
         <div class="service-card reveal">
@@ -153,7 +154,7 @@
           <h3>Atajos</h3>
           <ul>
             <li><a href="#inicio">Home</a></li>
-            <li><a href="#sobre-mi">Nosotros</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
             <li><a href="#servicios">Servicios</a></li>
           </ul>
         </div>
@@ -191,6 +192,6 @@
     <i class="bx bxl-whatsapp" aria-hidden="true"></i>
   </a>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
