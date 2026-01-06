@@ -495,10 +495,16 @@ body.is-loaded .hero-subtitle{
   text-align: center;
 }
 
-/* =========================
-   REVEAL (blur + stagger)
-========================= */
-.reveal{
+/* ===== REVEAL SAFE ===== */
+/* Sin JS: SIEMPRE visible */
+.no-js .reveal{
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Con JS: se oculta hasta que entre en pantalla */
+.js .reveal{
   opacity: 0;
   transform: translateY(18px);
   filter: blur(7px);
@@ -512,19 +518,20 @@ body.is-loaded .hero-subtitle{
   will-change: transform, opacity, filter;
 }
 
-.reveal.in-view{
+.js .reveal.in-view{
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
-/* Variante para imágenes: entra con un zoom sutil */
-.reveal.reveal-img{
+/* Variante imagen */
+.js .reveal.reveal-img{
   transform: translateY(18px) scale(.985);
 }
-.reveal.reveal-img.in-view{
+.js .reveal.reveal-img.in-view{
   transform: translateY(0) scale(1);
 }
+
 
 /* =========================
    FOOTER

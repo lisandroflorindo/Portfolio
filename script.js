@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.documentElement.style.outline = "3px solid lime";
+
   const body = document.body;
 
   const slidebar = document.querySelector(".slidebar");
@@ -117,6 +119,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const delay = Math.min(i * 80, 520); // tope para que no se vaya al infinito
     el.style.setProperty("--d", `${delay}ms`);
   });
+
+  // Fallback: si no hay IntersectionObserver, mostramos todo igual
+  if (!("IntersectionObserver" in window)) {
+    revealEls.forEach((el) => el.classList.add("in-view"));
+    body.classList.add("is-loaded");
+    requestAnimationFrame(() => body.classList.add("is-loaded"));
+  }
 
   const io = new IntersectionObserver(
     (entries) => {
