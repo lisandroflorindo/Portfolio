@@ -28,7 +28,7 @@ body{
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  padding-top: 0; /* antes: var(--nav-h) */
+  padding-top: 0;
 }
 
 /* =========================
@@ -274,7 +274,7 @@ a{
 
 .hero-subtitle{
   margin-top: 14px;
-  font-size: clamp(16px, 1.25vw, 20px); /* ✅ clamp corregido */
+  font-size: clamp(16px, 1.25vw, 20px);
   color: rgba(255,255,255,.82);
   line-height: 1.75;
   max-width: 62ch;
@@ -283,91 +283,14 @@ a{
   text-shadow: 0 14px 30px rgba(0,0,0,.55);
 }
 
-/* Acciones (si las usás) */
-.hero-actions{
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 18px;
-  flex-wrap: wrap;
-}
-
-.btn-primary,
-.btn-secondary{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  padding: 12px 18px;
-  border-radius: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
-}
-
-.btn-primary{
-  background: linear-gradient(90deg, rgba(255,183,66,1), rgba(255,212,128,1));
-  color: #000;
-  border: 1px solid rgba(255,183,66,.35);
-  box-shadow: 0 16px 46px rgba(255,183,66,.18);
-}
-.btn-primary:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 20px 56px rgba(255,183,66,.22);
-}
-
-.btn-secondary{
-  background: rgba(255,255,255,.07);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.18);
-}
-.btn-secondary:hover{
-  transform: translateY(-2px);
-  border-color: rgba(255,183,66,.45);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-}
-
-/* Métricas (si las usás) */
-.hero-metrics{
-  margin-top: 24px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  justify-items: center;
-}
-
-.metric{
-  padding: 12px 12px;
-  border-radius: 16px;
-  background: rgba(0,0,0,.28);
-  border: 1px solid rgba(255,255,255,.12);
-  transition: transform .2s ease, border-color .2s ease, background .2s ease;
-  width: 100%;
-}
-.metric:hover{
-  transform: translateY(-2px);
-  border-color: rgba(255,183,66,.30);
-  background: rgba(255,183,66,.06);
-}
-
-.metric-number{
-  font-weight: 700;
-  font-size: 14px;
-  text-align: center;
-  white-space: nowrap;
-  letter-spacing: .2px;
-}
-
 /* =========================
-   ABOUT + PROCESO
+   ABOUT
 ========================= */
 .section-title{
   font-size: clamp(24px, 2.2vw, 34px);
   color: var(--accent);
   margin-bottom: 18px;
-  text-align: center;
+  text-align: left; /* en desktop, arriba del texto */
   letter-spacing: -0.01em;
 }
 
@@ -398,8 +321,8 @@ a{
 .about-media img,
 .about-media-mobile img{
   width: 100%;
-  height: clamp(320px, 44vw, 560px);
-  object-fit: cover;
+  height: clamp(260px, 40vw, 520px);
+  object-fit: contain;
   display: block;
 }
 
@@ -407,16 +330,20 @@ a{
   text-align: left;
 }
 
+/* ✅ Justificado (Nosotros) */
 .about-text p{
   font-size: 20px;
   color: var(--text);
   line-height: 1.85;
   margin-bottom: 20px;
-  text-wrap: pretty;
-}
 
-.about-text span{
-  font-weight: 600;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+
+  text-wrap: pretty;
 }
 
 /* Highlight */
@@ -576,26 +503,26 @@ a{
    RESPONSIVE
 ========================= */
 
-/* <= 980px: About en columna + imagen controlada + imagen primero */
+/* <= 980px: About en columna + título arriba de imagen + imagen arriba de texto */
 @media screen and (max-width: 980px){
   .about-grid{ grid-template-columns: 1fr; }
 
   .about-media{ display: none; }
   .about-media-mobile{ display: block; }
 
-  /* imagen primero y luego texto (sin tocar HTML) */
+  /* Reordenamiento: TÍTULO -> IMAGEN -> TEXTO */
   #sobre-mi .about-text{
     display: flex;
     flex-direction: column;
     gap: 14px;
   }
+  #sobre-mi .about-text .section-title{ order: -3; text-align: center; }
   #sobre-mi .about-media-mobile{ order: -2; }
-  #sobre-mi .about-text .section-title{ order: -1; }
 
   /* controla tamaño en 420–980 */
   #sobre-mi .about-media-mobile{
     width: min(520px, 100%);
-    margin: 18px auto 10px;
+    margin: 10px auto 10px;
   }
   #sobre-mi .about-media-mobile img{
     width: 100%;
@@ -610,7 +537,7 @@ a{
   .about-media-mobile{ display: none; }
 }
 
-/* <= 780px: navbar mobile (logo a la izquierda, menú a la derecha) */
+/* <= 780px: navbar mobile */
 @media screen and (max-width: 780px){
   :root{ --nav-h: 118px; }
 
@@ -621,8 +548,6 @@ a{
   }
 
   .nav-links{ display: none; }
-
-  /* En mobile el nav no muestra nada: no debe ocupar ancho */
   .navbar nav{ display: none; }
 
   .menu-icon{
@@ -653,7 +578,7 @@ a{
 
   .about-text p{
     font-size: 18px;
-    text-align: left;
+    text-align: justify;
     padding: 5px;
   }
 
@@ -678,27 +603,6 @@ a{
   .about-media-mobile img{
     max-height: 340px;
   }
-
-  .btn-primary,
-  .btn-secondary{
-    padding: 12px 14px;
-    font-size: 14px;
-    min-width: 0;
-    flex: 1;
-  }
-
-  .hero-metrics{ gap: 8px; }
-  .metric-number{ font-size: 12px; }
-}
-
-/* <= 360px: micro-ajustes */
-@media screen and (max-width: 360px){
-  .btn-primary,
-  .btn-secondary{
-    font-size: 13px;
-    padding: 11px 12px;
-  }
-  .metric-number{ font-size: 11.5px; }
 }
 
 /* =========================
@@ -734,7 +638,6 @@ a{
   filter: brightness(1.05);
 }
 
-/* En mobile lo subimos un poco para que no moleste */
 @media (max-width: 780px){
   .wa-float{
     right: 14px;
@@ -744,7 +647,6 @@ a{
   }
 }
 
-/* Ocultar WhatsApp flotante cuando el footer está visible */
 @media (max-width: 780px){
   .wa-float.is-hidden{
     opacity: 0;
