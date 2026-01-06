@@ -415,16 +415,82 @@ a{
 }
 
 /* =========================
-   REVEAL
+   CLIENTES (1 cliente por ahora, centrado y “más redondo”)
 ========================= */
-.reveal{
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .6s ease, transform .6s ease;
+.clients{
+  background: var(--bg);
+  color: var(--text);
+  padding: 90px 40px 110px;
 }
-.reveal.in-view{
+
+.clients-content{
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.clients .section-title{
+  text-align: center;
+}
+
+.clients-subtitle{
+  margin: 8px auto 26px;
+  max-width: 70ch;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+.clients-grid{
+  display: grid;
+  grid-template-columns: 1fr;   /* ✅ 1 logo = 1 columna */
+  place-items: center;          /* ✅ centrado real */
+  gap: 16px;
+}
+
+/* Card tipo “medallón” para que no se vea tan cuadrado */
+.client-card{
+  padding: 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;         /* ✅ súper redondeado */
+  overflow: hidden;             /* ✅ recorta el cuadrado del JPG */
+  transition: transform .25s ease, border-color .25s ease, background .25s ease;
+}
+
+.client-card img{
+  width: 100%;
+  max-width: 360px;
+  height: 170px;
+  object-fit: contain;
+  transition: filter .25s ease, opacity .25s ease, transform .25s ease;
+}
+
+.client-card:hover{
+  transform: translateY(-2px);
+}
+
+.client-card:hover img{
+  filter: none;
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1.02);
+}
+
+/* Mobile: centrado y un poco más compacto */
+@media (max-width: 780px){
+  .clients{ padding: 70px 22px 90px; }
+
+  .client-card{
+    width: min(420px, 100%);
+    min-height: 200px;
+    padding: 22px 18px;
+  }
+  .client-card img{
+    max-width: 320px;
+    height: 150px;
+  }
 }
 
 /* =========================
@@ -530,6 +596,7 @@ a{
     max-height: 320px;
     object-fit: contain;
   }
+
 }
 
 /* >= 981px: ocultar versión mobile de la imagen */
@@ -582,6 +649,20 @@ a{
     padding: 5px;
   }
 
+  .clients{ 
+    padding: 70px 22px 80px; 
+  }
+  
+   .client-card{
+    width: min(420px, 100%);
+    min-height: 200px;
+    padding: 22px 18px;
+  }
+  .client-card img{
+    max-width: 300px;
+    height: 140px;
+  }
+  
   .footer-container{
     flex-direction: column;
     text-align: center;
@@ -603,8 +684,8 @@ a{
   .about-media-mobile img{
     max-height: 340px;
   }
-}
 
+}
 /* =========================
    WHATSAPP FLOAT
 ========================= */

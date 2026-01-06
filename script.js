@@ -10,9 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const allNavLinks = [...navLinksNavbar, ...navLinksSlidebar];
 
   const hireButtons = document.querySelectorAll(".hire-btn");
-  const revealEls = document.querySelectorAll(".reveal");
-
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const getNavbarOffset = () => {
     if (!navbar) return 70;
@@ -43,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menuBtn?.setAttribute("aria-expanded", "false");
   };
 
-  // ✅ Click en el botón completo (no solo el <i>)
+  // Menú
   menuBtn?.addEventListener("click", openMenu);
   closeBtn?.addEventListener("click", closeMenu);
   overlay?.addEventListener("click", closeMenu);
@@ -52,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeMenu();
   });
 
-  // Navegación sidebar (con scroll suave + cierra menú)
+  // Navegación sidebar (scroll suave + cierra menú)
   navLinksSlidebar.forEach((link) => {
     link.addEventListener("click", (e) => {
       const targetId = link.getAttribute("href");
@@ -67,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Navegación navbar (con scroll suave)
+  // Navegación navbar (scroll suave)
   navLinksNavbar.forEach((a) => {
     a.addEventListener("click", (e) => {
       const href = a.getAttribute("href");
@@ -81,10 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // WhatsApp: aplica a todos los .hire-btn (previene doble navegación)
+  // WhatsApp: aplica a todos los .hire-btn
   hireButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      // Si es <a>, evitamos que navegue por href además del window.open
       e.preventDefault();
 
       const numero = "5493764564963";
@@ -96,31 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Reveal
-  if (revealEls.length && !prefersReduced) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.18 }
-    );
-    revealEls.forEach((el) => io.observe(el));
-  } else {
-    revealEls.forEach((el) => el.classList.add("in-view"));
-  }
-
-  // Stagger: Servicios
-  const serviceCards = document.querySelectorAll(".services-grid .service-card.reveal");
-  serviceCards.forEach((card, idx) => {
-    card.style.transitionDelay = `${idx * 180}ms`;
-  });
-
-  // ✅ Activa links según scroll (navbar + sidebar)
+  // Activa links según scroll (navbar + sidebar)
   const sectionIds = [...new Set(
     allNavLinks
       .map((a) => a.getAttribute("href"))
@@ -164,28 +136,40 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", updateActiveOnScroll);
   updateActiveOnScroll();
 
-  // ✅ Oculta el botón flotante cuando se ve el footer / contacto
+  // Oculta el botón flotante cuando se ve el footer / contacto
   const waFloat = document.querySelector(".wa-float");
   const contactSection = document.querySelector("#contacto");
   const footerEl = document.querySelector("footer.footer");
-
   const hideTarget = contactSection || footerEl;
 
   if (waFloat && hideTarget) {
     const ioFloat = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Si el contacto/footer está visible => ocultar botón
           waFloat.classList.toggle("is-hidden", entry.isIntersecting);
         });
       },
-      {
-        // Apenas asome un poco el contacto/footer, lo ocultamos
-        threshold: 0.05,
-      }
+      { threshold: 0.05 }
     );
 
     ioFloat.observe(hideTarget);
   }
 
+  // ===== Libs: AOS + GLightbox =====
+  if (window.AOS) {
+    AOS.init({
+      once: true,
+      duration: 650,
+      offset: 120,
+      easing: "ease-out",
+    });
+  }
+
+  if (window.GLightbox) {
+    GLightbox({
+      selector: ".glightbox",
+      touchNavigation: true,
+      loop: true,
+    });
+  }
 });

@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <!-- ✅ Reset moderno (seguro) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize/modern-normalize.min.css">
+  <!-- ✅ AOS + GLightbox -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <link rel="stylesheet" href="styles.css" />
   <title>Soluciones Informáticas</title>
   <link rel="shortcut icon" href="images/solucionesinformaticas.png" type="image/x-icon" />
@@ -11,12 +16,13 @@
 
 <body>
   <!-- NAVBAR -->
-  <header class="navbar" role="banner">
+  <header class="navbar" role="banner" data-aos="fade-down" data-aos-duration="600">
     <nav aria-label="Navegación principal">
       <ul class="nav-links">
         <li><a href="#inicio">Home</a></li>
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#clientes">Clientes</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -57,6 +63,7 @@
         <li><a href="#inicio">Home</a></li>
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#clientes">Clientes</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -70,10 +77,9 @@
   <section id="inicio">
     <main class="hero">
       <div class="hero-inner">
-        <!-- ✅ sin reveal para que nunca quede invisible en mobile -->
         <div class="hero-left">
-          <h1 class="hero-title">Soluciones Informáticas</h1>
-          <p class="hero-subtitle">
+          <h1 class="hero-title" data-aos="fade-up" data-aos-delay="0">Soluciones Informáticas</h1>
+          <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="140">
             Me adapto a las necesidades de tu negocio.
           </p>
         </div>
@@ -81,35 +87,42 @@
     </main>
   </section>
 
-  <!-- SOBRE MÍ -->
+  <!-- SOBRE MÍ (solo sobre mí) -->
   <section id="sobre-mi" class="about">
     <div class="about-content">
       <div class="about-grid">
-        <div class="about-media reveal">
+        <!-- Animación: distinta a servicios -->
+        <div class="about-media reveal" data-aos="zoom-in-right" data-aos-delay="0">
           <img src="images/solucionesinformaticas.png" alt="LogoEscritorio" />
         </div>
 
-        <div class="about-text reveal">
-          <h2 class="section-title">Sobre mí</h2>
+        <div class="about-text reveal" data-aos="fade-left" data-aos-delay="160">
+          <h2 class="section-title" data-aos="fade-up" data-aos-delay="40">Sobre mí</h2>
 
-          <p>
+          <p data-aos="fade-up" data-aos-delay="220">
             Soy <strong>Lisandro Florindo</strong> y en <strong>Soluciones Informáticas</strong> ayudo a empresas, negocios y emprendedores a mejorar su presencia digital con una web moderna, rápida y preparada para convertir visitas en clientes.
           </p>
 
-          <p>
+          <p data-aos="fade-up" data-aos-delay="300">
             Me encargo de todo el proceso: desde la idea inicial hasta la publicación, cuidando el diseño, el rendimiento y la experiencia del usuario.
           </p>
 
-          <div class="about-media-mobile">
+          <div class="about-media-mobile" data-aos="zoom-in" data-aos-delay="180">
             <img src="images/solucionesinformaticas.png" alt="LogoMobile" />
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <p class="highlight reveal">Mis Servicios</p>
+  <!-- SERVICIOS (sección separada) -->
+  <section id="servicios" class="about">
+    <div class="about-content">
+      <p class="highlight reveal" data-aos="fade-down" data-aos-delay="0">Mis Servicios</p>
 
-      <div id="servicios" class="services-grid">
-        <div class="service-card reveal">
+      <div class="services-grid">
+        <!-- Animaciones distintas entre sí (y distintas a sobre-mi) -->
+        <div class="service-card reveal" data-aos="fade-right" data-aos-delay="0">
           <div class="image-wrapper">
             <img src="images/desarrollo_web.png" alt="Diseño Web" />
             <span class="img-overlay"></span>
@@ -118,7 +131,7 @@
           <p>Sitios modernos, responsive y orientados a tu marca.</p>
         </div>
 
-        <div class="service-card reveal">
+        <div class="service-card reveal" data-aos="zoom-in" data-aos-delay="160">
           <div class="image-wrapper">
             <img src="images/apps_moviles.png" alt="Aplicaciones Web" />
             <span class="img-overlay"></span>
@@ -127,7 +140,7 @@
           <p>Funciones a medida para tu negocio, adaptadas a tus necesidades.</p>
         </div>
 
-        <div class="service-card reveal">
+        <div class="service-card reveal" data-aos="fade-left" data-aos-delay="320">
           <div class="image-wrapper">
             <img src="images/mantenimiento.png" alt="Mantenimiento Web" />
             <span class="img-overlay"></span>
@@ -139,27 +152,50 @@
     </div>
   </section>
 
+  <!-- CLIENTES -->
+  <section id="clientes" class="clients">
+    <div class="clients-content">
+      <h2 class="section-title center" data-aos="fade-up" data-aos-delay="0">Clientes</h2>
+
+      <div class="clients-grid" data-aos="fade-up" data-aos-delay="180">
+        <a
+          class="client-card glightbox reveal"
+          href="images/clientes/sanmartiniano.png"
+          data-gallery="clientes"
+          aria-label="Ver logo del Instituto Superior Sanmartiniano"
+        >
+          <img
+            src="images/clientes/sanmartiniano.png"
+            alt="Instituto Superior Sanmartiniano"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACTO / FOOTER -->
   <section id="contacto">
     <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-column">
+      <div class="footer-container" data-aos="fade-up" data-aos-delay="0">
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="0">
           <h3>Contacto</h3>
           <p><i class="bx bx-envelope"></i> lisandromauricio33@gmail.com</p>
           <p><i class="bx bx-phone"></i> +54 376 4564963</p>
           <p><i class="bx bx-map"></i> Posadas, Misiones - Argentina</p>
         </div>
 
-        <div class="footer-column">
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="120">
           <h3>Atajos</h3>
           <ul>
             <li><a href="#inicio">Home</a></li>
             <li><a href="#sobre-mi">Sobre mí</a></li>
             <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#clientes">Clientes</a></li>
           </ul>
         </div>
 
-        <div class="footer-column">
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="240">
           <h3>Redes Sociales</h3>
           <div class="social-links">
             <a href="https://www.facebook.com/lisandroflorindo1/" target="_blank" rel="noopener">
@@ -192,6 +228,9 @@
     <i class="bx bxl-whatsapp" aria-hidden="true"></i>
   </a>
 
+  <!-- ✅ Libs (antes de tu script) -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>
