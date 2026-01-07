@@ -39,6 +39,10 @@ body{
   padding-top: 0;
 }
 
+html, body{
+  overflow-x: hidden;
+}
+
 /* Evita desbordes raros en mobile */
 img{
   max-width: 100%;
