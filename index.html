@@ -3,16 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="En Soluciones Informáticas ayudo a negocios, emprendedores e instituciones a mejorar su presencia digital con páginas web modernas, aplicaciones web a medida, mantenimiento y optimización. Me encargo de todo el proces, desde la idea hasta la publicación, priorizando rendimiento, seguridad y una experiencia única para el usuario" />
+
+  <title>Soluciones Informáticas | Posadas, Misiones</title>
+
+  <!-- Descripción corta, formal y “snippeteable” -->
+  <meta name="description" content="Soluciones Informáticas en Posadas, Misiones. Páginas web y aplicaciones a medida, mantenimiento, optimización para negocios, emprendedores e instituciones." />
+
   <link rel="canonical" href="https://solutionslf.com.ar/" />
+
+  <!-- Open Graph (redes / preview) -->
+  <meta property="og:title" content="Soluciones Informáticas | Desarrollo Web en Posadas, Misiones" />
+  <meta property="og:description" content="Páginas web y aplicaciones a medida, mantenimiento y optimización." />
+  <meta property="og:url" content="https://solutionslf.com.ar/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://solutionslf.com.ar/images/solucionesinformaticas.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Soluciones Informáticas" />
+  <meta name="twitter:description" content="Desarrollo web y aplicaciones a medida, mantenimiento y optimización en Posadas, Misiones." />
+  <meta name="twitter:image" content="https://solutionslf.com.ar/images/solucionesinformaticas.png" />
+
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <!-- ✅ Reset moderno (seguro) -->
+
+  <!-- ✅ Reset moderno -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize/modern-normalize.min.css">
+
   <!-- ✅ AOS + GLightbox -->
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
   <link rel="stylesheet" href="styles.css?v=20260108" />
-  <title>Soluciones Informáticas</title>
   <link rel="shortcut icon" href="images/solucionesinformaticas.png" type="image/x-icon" />
 </head>
 
@@ -35,9 +56,9 @@
         <i class="bx bxl-whatsapp"></i> ¡Quiero mi página!
       </a>
 
-      <!-- Logo solo para mobile -->
+      <!-- Logo solo para mobile (decorativo, ya hay H1 con el nombre) -->
       <a class="nav-logo" href="#inicio" aria-label="Ir al inicio">
-        <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas" />
+        <img src="images/solucionesinformaticas.png" alt="" aria-hidden="true" />
       </a>
     </div>
 
@@ -57,7 +78,7 @@
     </button>
 
     <a class="slidebar-logo" href="#inicio" aria-label="Ir al inicio">
-      <img src="images/solucionesinformaticas.png" alt="Soluciones Informáticas" />
+      <img src="images/solucionesinformaticas.png" alt="Logotipo de Soluciones Informáticas" />
     </a>
 
     <nav aria-label="Navegación móvil">
@@ -83,21 +104,23 @@
           <h1 class="hero-title hero-title-code">
             <span class="prompt"></span><span id="typedTitle">Soluciones Informáticas</span>
           </h1>
+
+          <!-- Texto más formal (Google lo toma fácil como snippet) -->
           <p class="hero-subtitle">
-            Nos adaptamos a las necesidades de tu negocio.
+            Páginas y aplicaciones web a medida. Nos adaptamos a tus necesidades.
           </p>
         </div>
       </div>
     </main>
   </section>
 
-  <!-- SOBRE MÍ (solo sobre mí) -->
+  <!-- SOBRE MÍ -->
   <section id="sobre-mi" class="about">
     <div class="about-content">
       <div class="about-grid">
-        <!-- Animación: distinta a servicios -->
         <div class="about-media reveal" data-aos="zoom-in-right" data-aos-delay="0">
-          <img src="images/solucionesinformaticas.png" alt="LogoEscritorio" />
+          <!-- Decorativo (evita “LogoEscritorio” en snippets) -->
+          <img src="images/solucionesinformaticas.png" alt="" aria-hidden="true" />
         </div>
 
         <div class="about-text reveal" data-aos="fade-left" data-aos-delay="160">
@@ -112,23 +135,23 @@
           </p>
 
           <div class="about-media-mobile" data-aos="zoom-in" data-aos-delay="180">
-            <img src="images/solucionesinformaticas.png" alt="LogoMobile" />
+            <!-- Decorativo -->
+            <img src="images/solucionesinformaticas.png" alt="" aria-hidden="true" />
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICIOS (sección separada) -->
+  <!-- SERVICIOS -->
   <section id="servicios" class="about">
     <div class="about-content">
       <p class="highlight reveal" data-aos="fade-down" data-aos-delay="0">Mis Servicios</p>
 
       <div class="services-grid">
-        <!-- Animaciones distintas entre sí (y distintas a sobre-mi) -->
         <div class="service-card reveal" data-aos="fade-right" data-aos-delay="0">
           <div class="image-wrapper">
-            <img src="images/desarrollo_web.png" alt="Diseño Web" />
+            <img src="images/desarrollo_web.png" alt="Servicio de diseño y desarrollo de páginas web" />
             <span class="img-overlay"></span>
           </div>
           <h3>Páginas Web</h3>
@@ -137,7 +160,7 @@
 
         <div class="service-card reveal" data-aos="zoom-in" data-aos-delay="160">
           <div class="image-wrapper">
-            <img src="images/apps_moviles.png" alt="Aplicaciones Web" />
+            <img src="images/apps_moviles.png" alt="Servicio de desarrollo de aplicaciones web a medida" />
             <span class="img-overlay"></span>
           </div>
           <h3>Aplicaciones Web</h3>
@@ -146,7 +169,7 @@
 
         <div class="service-card reveal" data-aos="fade-left" data-aos-delay="320">
           <div class="image-wrapper">
-            <img src="images/mantenimiento.png" alt="Mantenimiento Web" />
+            <img src="images/mantenimiento.png" alt="Servicio de mantenimiento, optimización y seguridad web" />
             <span class="img-overlay"></span>
           </div>
           <h3>Mantenimiento y Optimización</h3>
