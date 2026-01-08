@@ -771,3 +771,10 @@ a{
     pointer-events: none;
   }
 }
+
+/* El hero NUNCA debe quedar invisible aunque AOS no inicialice */
+#inicio .hero .hero-title[data-aos],
+#inicio .hero .hero-subtitle[data-aos]{
+  opacity: 1 !important;
+  transform: none !important;
+}
