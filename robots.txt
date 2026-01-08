@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://solutionslf.com.ar/sitemap.xml
